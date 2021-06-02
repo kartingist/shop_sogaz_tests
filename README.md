@@ -1,1 +1,0 @@
-# sogaz.shop.tests

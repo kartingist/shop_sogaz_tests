@@ -1,8 +1,7 @@
 from selenium.webdriver.common.by import By
 
 
-
-class NoAfraidChangeLocators():
+class NoAfraidChangeLocators:
     body = (By.CSS_SELECTOR, "body")
     # Попапы
     # _______________________________________________________________________
@@ -25,6 +24,10 @@ class NoAfraidChangeLocators():
     firstname_error = (By.XPATH, '//*[@id="person1"]/div[1]/div[2]/div')
     lastname = (By.CSS_SELECTOR, "#person1 > div.row.form-group.noPaddings > div:nth-child(3) > input")
     lastname_error = (By.XPATH, '//*[@id="person1"]/div[1]/div[3]/div')
+    sex = (By.XPATH, '//*[@id="select2-sex0-container"]')
+    sex_list = (By.XPATH, '//*[@id="select2-sex0-results"]')
+    male = (By.XPATH, "//LI[@role='option'][text()='М']")
+    famale = (By.XPATH, "//LI[@role='option'][text()='Ж']")
     birthday = (By.CSS_SELECTOR, "#person1 > div:nth-child(2) > div.col-sm-3.col-6 > div > input")
     birthday_error = (By.XPATH, '// *[ @ id = "box-birthday0"] / div')
     phone = (By.CSS_SELECTOR, "#person1 > div:nth-child(2) > div.col-sm-3.col-9 > input")
@@ -50,6 +53,7 @@ class NoAfraidChangeLocators():
     street = (By.CSS_SELECTOR, "#inp_address0 > div:nth-child(1) > div.col-sm-5.col-12 > input")
     street_error = (By.XPATH, '//*[@id="inp_address0"]/div[1]/div[2]/div')
     index = (By.CSS_SELECTOR, "#inp_address0 > div:nth-child(1) > div.col-sm-3.col-7 > input")
+    index_error = (By.XPATH, '//*[@id="inp_address0"]/div[1]/div[3]/div')
     home = (By.CSS_SELECTOR, "#inp_address0 > div:nth-child(2) > div:nth-child(1) > input")
     home_error = (By.XPATH, '//*[@id="inp_address0"]/div[2]/div[1]/div')
     korpus = (By.CSS_SELECTOR, "#inp_address0 > div:nth-child(2) > div:nth-child(2) > input")
