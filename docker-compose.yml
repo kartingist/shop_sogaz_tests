@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+  chrome_latest:
+    container_name: chr_latest
+    image: "selenoid/chrome:latest"
+    network_mode: bridge
+  #chrome_89:
+    #container_name: chr_89
+    #image: "selenoid/chrome:89.0"
+    #network_mode: bridge
+  firefox:
+    container_name: FF_latest
+    image: "selenoid/firefox:latest"
+    network_mode: bridge
+
+
+  selenoid:
+    container_name: selenoid0
+    image: "aerokube/selenoid"
+    network_mode: bridge
+    ports:
+      - "4444:4444"
+    volumes:
+      - "./browsers.json:/etc/selenoid/browsers.json"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "$PWD.:/etc/selenoid"
+    command: ["-conf", "/etc/selenoid/browsers.json", "-limit", "5", "-session-delete-timeout", "40s", "-timeout", "40s"]
+
+  selenoid-ui:
+    container_name: selenoid-ui0
+    image: "aerokube/selenoid-ui"
+    network_mode: bridge
+    links:
+      - selenoid
+    ports:
+      - "8081:8080"
+    command: ["--selenoid-uri", "http://selenoid:4444"]
+
+  ui_tests:
+    container_name: uitests0
+    network_mode: bridge
+    links:
+      - selenoid
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - selenoid
+      - selenoid-ui
+    volumes:
+      - "./test_report/:/var/www/tests/test_report/"
+
