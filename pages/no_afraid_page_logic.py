@@ -87,27 +87,16 @@ class Step_2(BasePage):
         self.scroll_to_element(*NoAfraidChangeLocators.go_to_step_3)
         self.selenium_click(*NoAfraidChangeLocators.go_to_step_3)
         self.wait_element(*NoAfraidChangeLocators.surname_error)
-        assert self.driver.find_element(
-            *NoAfraidChangeLocators.surname_error).text=='Обязательное поле', "не указана ошибка обязательности фамилии или текст ошибки не тот"
-        assert self.driver.find_element(
-            *NoAfraidChangeLocators.firstname_error).text == 'Обязательное поле', "не указана ошибка обязательности имени или текст ошибки не тот"
-        assert self.driver.find_element(
-            *NoAfraidChangeLocators.lastname_error).text == 'Обязательное поле', "не указана ошибка обязательности отчества или текст ошибки не тот"
-        assert self.driver.find_element(
-            *NoAfraidChangeLocators.birthday_error).text == 'Обязательное поле', "не указана ошибка обязательности др или текст ошибки не тот"
-        assert self.driver.find_element(
-            *NoAfraidChangeLocators.phone_error).text == 'Обязательное поле', 'Фактический результат:' + self.driver.find_element(
-            *NoAfraidChangeLocators.phone_error).text
-        assert self.driver.find_element(
-            *NoAfraidChangeLocators.email_error).text == 'Обязательное поле', "не указана ошибка обязательности email или текст ошибки не тот"
-        assert self.driver.find_element(
-            *NoAfraidChangeLocators.passport_error).text == 'Обязательное поле', "не указана ошибка обязательности № паспорта или текст ошибки не тот"
-        assert self.driver.find_element(
-            *NoAfraidChangeLocators.date_start_error).text == 'Обязательное поле', "не указана ошибка обязательности даты выдачи или текст ошибки не тот"
-        assert self.driver.find_element(
-            *NoAfraidChangeLocators.division_error).text == 'Обязательное поле', "не указана ошибка обязательности подразделения или текст ошибки не тот"
-        assert self.driver.find_element(
-            *NoAfraidChangeLocators.pass_who_give_error).text == 'Обязательное поле', "не указана ошибка обязательности кем выдан или текст ошибки не тот"
+        self.check_errors(*NoAfraidChangeLocators.surname_error, 'Обязательное поле')
+        self.check_errors(*NoAfraidChangeLocators.firstname_error, 'Обязательное поле')
+        self.check_errors(*NoAfraidChangeLocators.lastname_error, 'Обязательное поле')
+        self.check_errors(*NoAfraidChangeLocators.birthday_error, 'Обязательное поле')
+        self.check_errors(*NoAfraidChangeLocators.phone_error, 'Обязательное поле')
+        self.check_errors(*NoAfraidChangeLocators.email_error, 'Обязательное поле')
+        self.check_errors(*NoAfraidChangeLocators.passport_error, 'Обязательное поле')
+        self.check_errors(*NoAfraidChangeLocators.date_start_error, 'Обязательное поле')
+        self.check_errors(*NoAfraidChangeLocators.division_error, 'Обязательное поле')
+        self.check_errors(*NoAfraidChangeLocators.pass_who_give_error, 'Обязательное поле')
 
         # Заполнение первого блока личных данных
         # ____________________________________________________________________________________
@@ -172,49 +161,15 @@ class Step_2(BasePage):
         self.wait_element(*NoAfraidChangeLocators.birthday_error)
 #   Проверка ошибок
         self.check_errors(*NoAfraidChangeLocators.surname_error, 'Допустимы кирилические символы')
-        # assert self.driver.find_element(
-        #     ).text=='Допустимы кирилические символы', 'Фамилия, Фактический результат:'+self.driver.find_element(
-        #     *NoAfraidChangeLocators.surname_error).text
-        # assert self.driver.find_element(
-        #     *NoAfraidChangeLocators.firstname_error).text=='Допустимы кирилические символы', 'Имя, Фактический результат:'+self.driver.find_element(
-        #     *NoAfraidChangeLocators.firstname_error).text
         self.check_errors(*NoAfraidChangeLocators.firstname_error, 'Допустимы кирилические символы')
-# тут на данный момент ошибка
-#         assert self.driver.find_element(
-#             *NoAfraidChangeLocators.lastname_error).text=='Допустимы кирилические символы', 'Отчество, Фактический результат:'+self.driver.find_element(
-#             *NoAfraidChangeLocators.lastname_error).text
         self.check_errors(*NoAfraidChangeLocators.lastname_error, 'Допустимы кирилические символы')
-        # assert self.driver.find_element(
-        #     *NoAfraidChangeLocators.phone_error).text == 'Ошибка заполнения', 'Телефон, Фактический результат:' + self.driver.find_element(
-        #     *NoAfraidChangeLocators.phone_error).text
         self.check_errors(*NoAfraidChangeLocators.phone_error, 'Ошибка заполнения')
-        # assert self.driver.find_element(
-        #     *NoAfraidChangeLocators.email_error).text == 'Неверный формат почты', 'Email, Фактический результат:' + self.driver.find_element(
-        #     *NoAfraidChangeLocators.email_error).text
         self.check_errors(*NoAfraidChangeLocators.email_error, 'Неверный формат почты')
-        # assert self.driver.find_element(
-        #     *NoAfraidChangeLocators.passport_error).text == 'Ошибка заполнения', 'Паспорт, Фактический результат:' + self.driver.find_element(
-        #     *NoAfraidChangeLocators.passport_error).text
         self.check_errors(*NoAfraidChangeLocators.passport_error, 'Ошибка заполнения')
-# тут на данный момент ошибка
-#         assert self.driver.find_element(
-#             *NoAfraidChangeLocators.pass_who_give_error).text == 'Допустимы кирилические символы', 'Кем выдан, Фактический результат:' + self.driver.find_element(
-#             *NoAfraidChangeLocators.pass_who_give_error).text
         self.check_errors(*NoAfraidChangeLocators.pass_who_give_error, 'Допустимы кирилические символы')
-        # assert self.driver.find_element(
-        #     *NoAfraidChangeLocators.division_error).text == 'Ошибка заполнения', 'Код подразделения, Фактический результат:' + self.driver.find_element(
-        #     *NoAfraidChangeLocators.division_error).text
         self.check_errors(*NoAfraidChangeLocators.division_error, 'Ошибка заполнения')
-# тут на данный момент ошибка
-#         assert self.driver.find_element(
-#             *NoAfraidChangeLocators.street_error).text=='Допустимы кирилические символы', 'Улица, Фактический результат:'+self.driver.find_element(
-#             *NoAfraidChangeLocators.street_error).text
         self.check_errors(*NoAfraidChangeLocators.street_error, 'Допустимы кирилические символы')
-        # assert self.driver.find_element(
-        #     *NoAfraidChangeLocators.index_error).text == 'Ошибка заполнения', 'Индекс, Фактический результат:' + self.driver.find_element(
-        #     *NoAfraidChangeLocators.index_error).text
         self.check_errors(*NoAfraidChangeLocators.index_error, 'Ошибка заполнения')
-
 #     ____________________________________________________________________________________________________________
 
     def age_check(self, age, sex):
@@ -254,8 +209,7 @@ class Step_2(BasePage):
             return True
         else:
             self.wait_element(*NoAfraidChangeLocators.birthday_error)
-            assert self.driver.find_element(
-                *NoAfraidChangeLocators.birthday_error).text == 'Нарушены условия страхования', 'Фактический результат:'+self.driver.find_element(*NoAfraidChangeLocators.birthday_error).text
+            self.check_errors(*NoAfraidChangeLocators.birthday_error, 'Нарушены условия страхования')
 
     def personal_code_check(self, code):
         self.wait_element(*NoAfraidChangeLocators.step_2)
@@ -290,7 +244,7 @@ class Step_2(BasePage):
         self.selenium_click(*NoAfraidChangeLocators.go_to_step_3)
         if 0<len(code)<4:
             self.wait_element(*NoAfraidChangeLocators.personal_code_error)
-            assert self.driver.find_element(*NoAfraidChangeLocators.personal_code_error).text == 'Числовое значение от 4 до 8 символов включительно', 'некорректный текст ошибки:'+self.driver.find_element(*NoAfraidChangeLocators.personal_code_error).text
+            self.check_errors(*NoAfraidChangeLocators.personal_code_error, 'Числовое значение от 4 до 8 символов включительно')
         elif len(code)>8:
             assert len(self.driver.find_element(*NoAfraidChangeLocators.personal_code).get_attribute('value'))==8, 'удалось ввести 9ти значный код'
             return True

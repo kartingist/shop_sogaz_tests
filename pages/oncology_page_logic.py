@@ -84,8 +84,8 @@ class Step_2(BasePage):
 
 class Step_3(BasePage):
     def should_be_step_3(self):
-        assert self.is_element_present(*NoAfraidChangeLocators.item_iner_step_3), "Не выполнен переход на третий шаг"
-        self.wait_element(*NoAfraidChangeLocators.item_iner_step_3)
+        assert self.is_element_present(*NoAfraidChangeLocators.step3), "Не выполнен переход на третий шаг"
+        self.wait_element(*NoAfraidChangeLocators.step3)
         self.scroll_to_element(*NoAfraidChangeLocators.get_code)
         self.wait_element(*NoAfraidChangeLocators.email_confirm)
         time.sleep(3)
