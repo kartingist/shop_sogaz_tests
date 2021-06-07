@@ -18,7 +18,7 @@ class NoAfraidChangeLocators:
     # Шаг 2
     # заполнение личных данных
     # _______________________________________________________________________
-    step_2 = (By.CSS_SELECTOR, "#form-createpolis > div.desigion__item-inner-person.person__block_detail.visible")
+    step_2 = (By.CSS_SELECTOR, "#step2")
     surname = (By.CSS_SELECTOR, "#surname")
     surname_error=(By.CSS_SELECTOR, "#person1 > div.row.form-group.noPaddings > div:nth-child(1) > div")
     firstname = (By.CSS_SELECTOR, "#firstname")

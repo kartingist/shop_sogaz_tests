@@ -6,7 +6,7 @@ from .link import link
 links=link[0]
 
 
-
+#
 @pytest.mark.parametrize('link', links,  scope='function')
 def test_base(browser, link):
 
@@ -31,7 +31,8 @@ def test_base(browser, link):
 
 
 @pytest.mark.parametrize('link', links,  scope='function')
-def test_required_fields(browser, link ):
+@pytest.mark.parametrize('fio', ["тест", "тест-тест", "тест тест"])
+def test_required_fields(browser, link, fio ):
 
     link = link + 'accident/no_afraid_change/#'
     step_1 = Step_1(browser, link)
@@ -41,7 +42,7 @@ def test_required_fields(browser, link ):
 
     step_2 = Step_2(browser, link)
     step_2.should_be_step_2()
-    step_2.anketa_required_fields()
+    step_2.anketa_required_fields(fio)
 
     step_3 = Step_3(browser, link)
     step_3.should_be_step_3()
@@ -68,9 +69,10 @@ def test_null_fields_errors(browser, link ):
     step_3 = Step_3(browser, link)
     step_3.should_be_step_3()
 
-
+#
 @pytest.mark.parametrize('link', links,  scope='function')
-def test_anketa_validation_errors(browser, link):
+@pytest.mark.parametrize('test', ["test", "теst", "тест test", "тест.", "тест@", "тест123"])
+def test_anketa_validation_errors(browser, link, test):
     link = link + 'accident/no_afraid_change/#'
     step_1 = Step_1(browser, link)
     step_1.open()
@@ -79,7 +81,7 @@ def test_anketa_validation_errors(browser, link):
 
     step_2 = Step_2(browser, link)
     step_2.should_be_step_2()
-    step_2.anketa_validation_errors()
+    step_2.anketa_validation_errors(test)
 
 
 @pytest.mark.parametrize('link', links,  scope='function')

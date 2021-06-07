@@ -66,6 +66,11 @@ class BasePage():
             self.element_to_be_clickable(*NoAfraidChangeLocators.sex)
             self.element_to_be_clickable(*NoAfraidChangeLocators.famale)
             self.driver.find_element(*NoAfraidChangeLocators.famale).click()
+    def check_errors(self, how, what, error):
+        if len(self.driver.find_element(how, what).text)>0:
+            assert self.driver.find_element(how, what).text==error, f'Селектор({what}) Фактический результат:' + self.driver.find_element(how, what).text
+        else:
+            assert False, f'Отсутствует ошибка валидации, cелектор: {what} '
 
 
 
