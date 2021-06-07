@@ -1,4 +1,5 @@
 from selenium.common.exceptions import NoSuchElementException
+from .locators import DrLikeStep1
 from .locators import NoAfraidChangeLocators
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -32,7 +33,7 @@ class BasePage():
 
     def scroll_to_element(self, how, what): # Нужна доработка, ожидание не работает
         self.driver.execute_script("return arguments[0].scrollIntoView(true);", WebDriverWait(self.driver, 40).until(EC.visibility_of_element_located((how, what))))
-        time.sleep(1.6)
+        time.sleep(1.7)
 
     def wait_element(self, how, what):
         WebDriverWait(self.driver, 60).until(EC.visibility_of_element_located((how, what)))
@@ -65,6 +66,7 @@ class BasePage():
             self.element_to_be_clickable(*NoAfraidChangeLocators.sex)
             self.element_to_be_clickable(*NoAfraidChangeLocators.famale)
             self.driver.find_element(*NoAfraidChangeLocators.famale).click()
+
 
 
 
