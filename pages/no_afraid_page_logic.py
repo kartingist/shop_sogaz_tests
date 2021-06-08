@@ -52,7 +52,7 @@ class Step_2(BasePage):
         self.scroll_to_element(*NoAfraidChangeLocators.go_to_step_3)
         self.selenium_click(*NoAfraidChangeLocators.go_to_step_3)
 # _________________________________________________________________________________________________________
-    def anketa_required_fields(self, fio):
+    def anketa_required_fields(self, fio, whogiveandstreet):
         self.wait_element(*NoAfraidChangeLocators.step_2)
         # Заполнение первого блока личных данных
         # ____________________________________________________________________________________
@@ -69,7 +69,7 @@ class Step_2(BasePage):
         self.js_input('04092019', *NoAfraidChangeLocators.date_start)
         self.selenium_click(*NoAfraidChangeLocators.body)
         self.js_input('650002', *NoAfraidChangeLocators.division)
-        self.selenium_input('Кем-то выдан', *NoAfraidChangeLocators.pass_who_give)
+        self.selenium_input(whogiveandstreet, *NoAfraidChangeLocators.pass_who_give)
 
         # Заполнение блока адреса регистрации
         # ____________________________________________________________________________________
@@ -77,7 +77,7 @@ class Step_2(BasePage):
         self.selenium_click(*NoAfraidChangeLocators.inp_address)
         self.selenium_input('Мос', *NoAfraidChangeLocators.city)
         self.selenium_click(*NoAfraidChangeLocators.select_city)
-        self.selenium_input('Арсеньева', *NoAfraidChangeLocators.street)
+        self.selenium_input(whogiveandstreet, *NoAfraidChangeLocators.street)
         self.selenium_input('33', *NoAfraidChangeLocators.home)
         self.scroll_to_element(*NoAfraidChangeLocators.go_to_step_3)
         self.selenium_click(*NoAfraidChangeLocators.go_to_step_3)
@@ -126,14 +126,14 @@ class Step_2(BasePage):
         self.scroll_to_element(*NoAfraidChangeLocators.go_to_step_3)
         self.selenium_click(*NoAfraidChangeLocators.go_to_step_3)
 # _______________________________________________________________________________________
-    def anketa_validation_errors(self, test):
+    def anketa_validation_errors(self, testfio):
         self.wait_element(*NoAfraidChangeLocators.step_2)
 
         # Заполнение первого блока личных данных
         # ____________________________________________________________________________________
-        self.selenium_input(test, *NoAfraidChangeLocators.surname)
-        self.selenium_input('test', *NoAfraidChangeLocators.firstname)
-        self.selenium_input('test', *NoAfraidChangeLocators.lastname)
+        self.selenium_input(testfio, *NoAfraidChangeLocators.surname)
+        self.selenium_input(testfio, *NoAfraidChangeLocators.firstname)
+        self.selenium_input(testfio, *NoAfraidChangeLocators.lastname)
         self.js_input('030819', *NoAfraidChangeLocators.birthday)
         self.scroll_to_element(*NoAfraidChangeLocators.phone)
         self.wait_element(*NoAfraidChangeLocators.phone)
@@ -144,7 +144,7 @@ class Step_2(BasePage):
         self.js_input('040920', *NoAfraidChangeLocators.date_start)
         self.selenium_click(*NoAfraidChangeLocators.body)
         self.js_input('6500', *NoAfraidChangeLocators.division)
-        self.selenium_input(test, *NoAfraidChangeLocators.pass_who_give)
+        self.selenium_input('test', *NoAfraidChangeLocators.pass_who_give)
 
 
         # Заполнение блока адреса регистрации

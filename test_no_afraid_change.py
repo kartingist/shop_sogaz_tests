@@ -8,7 +8,7 @@ links=link[0]
 
 #
 @pytest.mark.parametrize('link', links,  scope='function')
-def test_base(browser, link):
+def test_full_run(browser, link):
 
     link = link + 'accident/no_afraid_change/#'
     step_1 = Step_1(browser, link)
@@ -28,11 +28,12 @@ def test_base(browser, link):
     if 'https://sogazrelease.support.zetest.site/' not in link and 'http://shop.sogaz.loc/' not in link:
         pay_step = Pay_step(browser, link)
         pay_step.go_to_pay()
-
-
+#
+#
 @pytest.mark.parametrize('link', links,  scope='function')
-@pytest.mark.parametrize('fio', ["тест", "тест-тест", "тест тест"])
-def test_required_fields(browser, link, fio ):
+@pytest.mark.parametrize('fio, whogiveandstreet', [("тест", "тест 123"), ("тест-тест", "тест."), ("тест тест", "тест'"), ("тест'", "тест_"), ("ТЕСТ", "ТЕСТ")])
+
+def test_required_fields(browser, link, fio, whogiveandstreet):
 
     link = link + 'accident/no_afraid_change/#'
     step_1 = Step_1(browser, link)
@@ -42,7 +43,7 @@ def test_required_fields(browser, link, fio ):
 
     step_2 = Step_2(browser, link)
     step_2.should_be_step_2()
-    step_2.anketa_required_fields(fio)
+    step_2.anketa_required_fields(fio, whogiveandstreet)
 
     step_3 = Step_3(browser, link)
     step_3.should_be_step_3()
@@ -52,7 +53,7 @@ def test_required_fields(browser, link, fio ):
     if 'https://sogazrelease.support.zetest.site/' not in link and 'http://shop.sogaz.loc/' not in link:
         pay_step = Pay_step(browser, link)
         pay_step.go_to_pay()
-
+#
 @pytest.mark.parametrize('link', links,  scope='function')
 def test_null_fields_errors(browser, link ):
 
@@ -71,8 +72,8 @@ def test_null_fields_errors(browser, link ):
 
 #
 @pytest.mark.parametrize('link', links,  scope='function')
-@pytest.mark.parametrize('test', ["test", "теst", "тест test", "тест.", "тест@", "тест123"])
-def test_anketa_validation_errors(browser, link, test):
+@pytest.mark.parametrize('testfio', ["test", "теst", "тест test", "тест.", "тест@", "тест123"])
+def test_anketa_validation_errors(browser, link, testfio):
     link = link + 'accident/no_afraid_change/#'
     step_1 = Step_1(browser, link)
     step_1.open()
@@ -81,7 +82,7 @@ def test_anketa_validation_errors(browser, link, test):
 
     step_2 = Step_2(browser, link)
     step_2.should_be_step_2()
-    step_2.anketa_validation_errors(test)
+    step_2.anketa_validation_errors(testfio)
 
 
 @pytest.mark.parametrize('link', links,  scope='function')
