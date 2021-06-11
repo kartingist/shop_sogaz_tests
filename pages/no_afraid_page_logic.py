@@ -1,8 +1,8 @@
 from .locators import NoAfraidChangeLocators
 from .base_page import BasePage
 import time
-
-
+import random
+email=[f'user{str(random.randint(90000, 99999))}@gmail.com']
 
 
 class Step_1(BasePage):
@@ -28,7 +28,7 @@ class Step_2(BasePage):
         self.wait_element(*NoAfraidChangeLocators.phone)
         self.selenium_click(*NoAfraidChangeLocators.phone)
         self.selenium_input('9990403660', *NoAfraidChangeLocators.phone)
-        self.selenium_input('awjon94@gmail.com', *NoAfraidChangeLocators.email)
+        self.selenium_input(email, *NoAfraidChangeLocators.email)
         self.js_input('6420001900', *NoAfraidChangeLocators.passport)
         self.js_input('04092019', *NoAfraidChangeLocators.date_start)
         self.selenium_click(*NoAfraidChangeLocators.body)
@@ -64,7 +64,7 @@ class Step_2(BasePage):
         self.wait_element(*NoAfraidChangeLocators.phone)
         self.selenium_click(*NoAfraidChangeLocators.phone)
         self.selenium_input('9990403660', *NoAfraidChangeLocators.phone)
-        self.selenium_input('awjon94@gmail.com', *NoAfraidChangeLocators.email)
+        self.selenium_input(email, *NoAfraidChangeLocators.email)
         self.js_input('6420001900', *NoAfraidChangeLocators.passport)
         self.js_input('04092019', *NoAfraidChangeLocators.date_start)
         self.selenium_click(*NoAfraidChangeLocators.body)
@@ -108,7 +108,7 @@ class Step_2(BasePage):
         self.wait_element(*NoAfraidChangeLocators.phone)
         self.selenium_click(*NoAfraidChangeLocators.phone)
         self.selenium_input('9990403660', *NoAfraidChangeLocators.phone)
-        self.selenium_input('awjon94@gmail.com', *NoAfraidChangeLocators.email)
+        self.selenium_input(email, *NoAfraidChangeLocators.email)
         self.js_input('6420001900', *NoAfraidChangeLocators.passport)
         self.js_input('04092019', *NoAfraidChangeLocators.date_start)
         self.selenium_click(*NoAfraidChangeLocators.body)
@@ -126,7 +126,7 @@ class Step_2(BasePage):
         self.scroll_to_element(*NoAfraidChangeLocators.go_to_step_3)
         self.selenium_click(*NoAfraidChangeLocators.go_to_step_3)
 # _______________________________________________________________________________________
-    def anketa_validation_errors(self, testfio):
+    def anketa_validation_errors(self, testfio, textfields):
         self.wait_element(*NoAfraidChangeLocators.step_2)
 
         # Заполнение первого блока личных данных
@@ -155,7 +155,10 @@ class Step_2(BasePage):
         self.selenium_click(*NoAfraidChangeLocators.select_city)
         self.selenium_input('test', *NoAfraidChangeLocators.street)
         self.js_input('6925', *NoAfraidChangeLocators.index)
-        self.selenium_input('test', *NoAfraidChangeLocators.home)
+        self.selenium_input(textfields, *NoAfraidChangeLocators.home)
+        self.selenium_input(textfields, *NoAfraidChangeLocators.korpus)
+        self.selenium_input(textfields, *NoAfraidChangeLocators.building)
+        self.selenium_input(textfields, *NoAfraidChangeLocators.flat)
         self.scroll_to_element(*NoAfraidChangeLocators.go_to_step_3)
         self.selenium_click(*NoAfraidChangeLocators.go_to_step_3)
         self.wait_element(*NoAfraidChangeLocators.birthday_error)
@@ -179,7 +182,8 @@ class Step_2(BasePage):
         self.selenium_input('тестов', *NoAfraidChangeLocators.surname)
         self.selenium_input('тест', *NoAfraidChangeLocators.firstname)
         self.selenium_input('тестович', *NoAfraidChangeLocators.lastname)
-        self.element_to_be_clickable(*NoAfraidChangeLocators.sex)
+        self.scroll_to_element(*NoAfraidChangeLocators.sex)
+        self.wait_element(*NoAfraidChangeLocators.sex)
         self.selenium_click(*NoAfraidChangeLocators.sex)
         self.wait_element(*NoAfraidChangeLocators.sex_list)
         self.select_sex(sex)
@@ -188,7 +192,7 @@ class Step_2(BasePage):
         self.wait_element(*NoAfraidChangeLocators.phone)
         self.selenium_click(*NoAfraidChangeLocators.phone)
         self.selenium_input('9990403660', *NoAfraidChangeLocators.phone)
-        self.selenium_input('awjon94@gmail.com', *NoAfraidChangeLocators.email)
+        self.selenium_input(email, *NoAfraidChangeLocators.email)
         self.js_input('6420001900', *NoAfraidChangeLocators.passport)
         self.js_input('04092019', *NoAfraidChangeLocators.date_start)
         self.selenium_click(*NoAfraidChangeLocators.body)
@@ -223,7 +227,7 @@ class Step_2(BasePage):
         self.wait_element(*NoAfraidChangeLocators.phone)
         self.selenium_click(*NoAfraidChangeLocators.phone)
         self.selenium_input('9990403660', *NoAfraidChangeLocators.phone)
-        self.selenium_input('awjon94@gmail.com', *NoAfraidChangeLocators.email)
+        self.selenium_input(email, *NoAfraidChangeLocators.email)
         self.js_input('6420001900', *NoAfraidChangeLocators.passport)
         self.js_input('04092019', *NoAfraidChangeLocators.date_start)
         self.selenium_click(*NoAfraidChangeLocators.body)

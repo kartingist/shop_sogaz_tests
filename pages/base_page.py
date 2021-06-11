@@ -48,6 +48,7 @@ class BasePage():
     def selenium_input(self, value, how, what):
         self.driver.find_element(how, what).send_keys(value)
 
+
     def element_to_be_clickable(self, how, what):
         WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable((how, what)))
 
@@ -60,17 +61,26 @@ class BasePage():
     def select_sex(self, sex):
         if sex=='м' or sex=='male':
             self.element_to_be_clickable(*NoAfraidChangeLocators.sex)
+            time.sleep(0.1)
             self.element_to_be_clickable(*NoAfraidChangeLocators.male)
             self.driver.find_element(*NoAfraidChangeLocators.male).click()
         elif sex=='ж' or sex=='famale':
             self.element_to_be_clickable(*NoAfraidChangeLocators.sex)
+            time.sleep(0.1)
             self.element_to_be_clickable(*NoAfraidChangeLocators.famale)
             self.driver.find_element(*NoAfraidChangeLocators.famale).click()
     def check_errors(self, how, what, error):
         if len(self.driver.find_element(how, what).text)>0:
             assert self.driver.find_element(how, what).text==error, f'Селектор({what}) Фактический результат:' + self.driver.find_element(how, what).text
         else:
-            assert False, f'Отсутствует ошибка валидации, cелектор: {what} '
+            assert False, f'Отсутствует ошибка валидации, cелектор: {what}'
+
+    def correct_filling(self, value, how, what):
+        assert self.driver.find_element(how, what).get_attribute('value') == value, "данные изменились после ввода"
+
+
+
+
 
 
 
