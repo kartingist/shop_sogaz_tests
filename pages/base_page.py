@@ -1,6 +1,7 @@
-from selenium.common.exceptions import NoSuchElementException
-from .locators import DrLikeStep1
-from .locators import NoAfraidChangeLocators
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+
+# from .no_afraid_change.locators import DrLikeStep1
+from .no_afraid_change.locators import NoAfraidChangeLocators
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
@@ -71,12 +72,24 @@ class BasePage():
             self.driver.find_element(*NoAfraidChangeLocators.famale).click()
     def check_errors(self, how, what, error):
         if len(self.driver.find_element(how, what).text)>0:
-            assert self.driver.find_element(how, what).text==error, f'Селектор({what}) Фактический результат:' + self.driver.find_element(how, what).text
+            assert self.driver.find_element(how, what).text==error, \
+                f'Селектор({what})  ' \
+                f'Ожидаемый результат: {error}, ' \
+                f'Фактический результат: {self.driver.find_element(how, what).text}'
+
         else:
             assert False, f'Отсутствует ошибка валидации, cелектор: {what}'
 
     def correct_filling(self, value, how, what):
         assert self.driver.find_element(how, what).get_attribute('value') == value, "данные изменились после ввода"
+
+    def should_be(self, how, what):
+        try:
+            WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((how, what)))
+        except (TimeoutException):
+            return False
+        return True
+
 
 
 
