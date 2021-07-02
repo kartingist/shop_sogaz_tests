@@ -23,11 +23,12 @@ def test_full_run(browser, link):
 
     step_3 = Step_3(browser, link)
     step_3.should_be_step_3()
-    step_3.get_input_code()
-    step_3.accept_checkbox()
-    if 'https://sogazrelease.support.zetest.site/' not in link and 'http://shop.sogaz.loc/' not in link:
-        pay_step = Pay_step(browser, link)
-        pay_step.go_to_pay()
+    if 'https://shop.sogaz.ru/' not in link:
+        step_3.get_input_code()
+        step_3.accept_checkbox()
+        if 'https://sogazrelease.support.zetest.site/' not in link and 'http://shop.sogaz.loc/' not in link:
+            pay_step = Pay_step(browser, link)
+            pay_step.go_to_pay()
 # #
 # #
 @pytest.mark.parametrize('link', link,  scope='function')
@@ -115,7 +116,5 @@ def test_validate_personal_code(browser, link, code):
     if step_2.personal_code_check(code)==True:
         step_3 = Step_3(browser, link)
         step_3.should_be_step_3()
-    else:
-        assert False, 'Что-то пошло не по плану)'
 
 

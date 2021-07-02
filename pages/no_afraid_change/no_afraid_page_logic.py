@@ -253,12 +253,12 @@ class Step_2(BasePage):
         self.selenium_click(*NoAfraidChangeLocators.go_to_step_3)
         if 0<len(code)<4:
             if self.should_be(*NoAfraidChangeLocators.personal_code_error)==True:
-                print(1)
                 self.check_errors(*NoAfraidChangeLocators.personal_code_error,
                                   'Числовое значение от 4 до 8 символов включительно')
             else:
                 if self.should_be(*NoAfraidChangeLocators.step3)==True:
                     assert False, 'Некорректная валидация кода сотрудника'
+                else: assert False, 'Что-то пошло не по плану'
 
         elif len(code)>8:
             assert len(self.driver.find_element(*NoAfraidChangeLocators.personal_code).get_attribute('value'))==8, 'удалось ввести 9ти значный код'
