@@ -34,11 +34,9 @@ class DrLikeLocators:
     lastname0 = (By.CSS_SELECTOR, '#lastname0')
     lastname0_error = (By.XPATH, '//*[@id="person0"]/div[1]/div[3]/div')
 
-    # TODO ПЕРЕДЕЛАТЬ base_page
+
     sex0 = (By.CSS_SELECTOR, '#select2-sex0-container')
     sex_list0 = (By.XPATH, '#select2-sex0-results')
-    male = (By.XPATH, "//LI[@role='option'][text()='М']")
-    famale = (By.XPATH, "//LI[@role='option'][text()='Ж']")
 
     birthday0 = (By.CSS_SELECTOR, '#birthday0')
     birthday0_error = (By.XPATH, '//*[@id="box-birthday0"]/label')
@@ -129,9 +127,6 @@ class DrLikeLocators:
 
     sex1 = (By.CSS_SELECTOR, '#select2-sex1-container')
     sex_list1 = (By.XPATH, '#select2-sex1-results')
-    # TODO ПЕРЕДЕЛАТЬ base_page
-    # male = (By.XPATH, "//LI[@role='option'][text()='М']")
-    # famale = (By.XPATH, "//LI[@role='option'][text()='Ж']")
 
     birthday1 = (By.CSS_SELECTOR, '#birthday1')
     birthday1_error = (By.XPATH, '//*[@id="box-birthday1"]/label')

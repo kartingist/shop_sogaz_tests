@@ -1,4 +1,5 @@
 from .locators import NoAfraidChangeLocators
+from ..base_locators import Common_Locators
 from ..base_page import BasePage
 import time
 import random
@@ -31,16 +32,14 @@ class Step_2(BasePage):
         self.selenium_input(email, *NoAfraidChangeLocators.email)
         self.js_input('6420001900', *NoAfraidChangeLocators.passport)
         self.js_input('04092019', *NoAfraidChangeLocators.date_start)
-        self.selenium_click(*NoAfraidChangeLocators.body)
+        self.selenium_click(*Common_Locators.body)
         self.js_input('650002', *NoAfraidChangeLocators.division)
         self.selenium_input('Кем-то выдан', *NoAfraidChangeLocators.pass_who_give)
 
         # Заполнение блока адреса регистрации
         # ____________________________________________________________________________________
         self.scroll_to_element(*NoAfraidChangeLocators.person1)
-        self.selenium_click(*NoAfraidChangeLocators.inp_address)
-        self.selenium_input('Мос', *NoAfraidChangeLocators.city)
-        self.selenium_click(*NoAfraidChangeLocators.select_city)
+        self.input_city('Мос', *NoAfraidChangeLocators.inp_address)
         self.selenium_input('Арсеньева', *NoAfraidChangeLocators.street)
         self.js_input('692502', *NoAfraidChangeLocators.index)
         self.selenium_input('33', *NoAfraidChangeLocators.home)
@@ -67,16 +66,14 @@ class Step_2(BasePage):
         self.selenium_input(email, *NoAfraidChangeLocators.email)
         self.js_input('6420001900', *NoAfraidChangeLocators.passport)
         self.js_input('04092019', *NoAfraidChangeLocators.date_start)
-        self.selenium_click(*NoAfraidChangeLocators.body)
+        self.selenium_click(*Common_Locators.body)
         self.js_input('650002', *NoAfraidChangeLocators.division)
         self.selenium_input(whogiveandstreet, *NoAfraidChangeLocators.pass_who_give)
 
         # Заполнение блока адреса регистрации
         # ____________________________________________________________________________________
         self.scroll_to_element(*NoAfraidChangeLocators.person1)
-        self.selenium_click(*NoAfraidChangeLocators.inp_address)
-        self.selenium_input('Мос', *NoAfraidChangeLocators.city)
-        self.selenium_click(*NoAfraidChangeLocators.select_city)
+        self.input_city('Мос', *NoAfraidChangeLocators.inp_address)
         self.selenium_input(whogiveandstreet, *NoAfraidChangeLocators.street)
         self.selenium_input('33', *NoAfraidChangeLocators.home)
         self.scroll_to_element(*NoAfraidChangeLocators.go_to_step_3)
@@ -111,16 +108,14 @@ class Step_2(BasePage):
         self.selenium_input(email, *NoAfraidChangeLocators.email)
         self.js_input('6420001900', *NoAfraidChangeLocators.passport)
         self.js_input('04092019', *NoAfraidChangeLocators.date_start)
-        self.selenium_click(*NoAfraidChangeLocators.body)
+        self.selenium_click(*Common_Locators.body)
         self.js_input('650002', *NoAfraidChangeLocators.division)
         self.selenium_input('Кем-то выдан', *NoAfraidChangeLocators.pass_who_give)
 
         # Заполнение блока адреса регистрации
         # ____________________________________________________________________________________
         self.scroll_to_element(*NoAfraidChangeLocators.person1)
-        self.selenium_click(*NoAfraidChangeLocators.inp_address)
-        self.selenium_input('Мос', *NoAfraidChangeLocators.city)
-        self.selenium_click(*NoAfraidChangeLocators.select_city)
+        self.input_city('Мос', *NoAfraidChangeLocators.inp_address)
         self.selenium_input('Арсеньева', *NoAfraidChangeLocators.street)
         self.selenium_input('33', *NoAfraidChangeLocators.home)
         self.scroll_to_element(*NoAfraidChangeLocators.go_to_step_3)
@@ -142,7 +137,7 @@ class Step_2(BasePage):
         self.selenium_input('awjon94@gmail', *NoAfraidChangeLocators.email)
         self.js_input('6420001', *NoAfraidChangeLocators.passport)
         self.js_input('040920', *NoAfraidChangeLocators.date_start)
-        self.selenium_click(*NoAfraidChangeLocators.body)
+        self.selenium_click(*Common_Locators.body)
         self.js_input('6500', *NoAfraidChangeLocators.division)
         self.selenium_input('test', *NoAfraidChangeLocators.pass_who_give)
 
@@ -150,9 +145,7 @@ class Step_2(BasePage):
         # Заполнение блока адреса регистрации
         # ____________________________________________________________________________________
         self.scroll_to_element(*NoAfraidChangeLocators.person1)
-        self.selenium_click(*NoAfraidChangeLocators.inp_address)
-        self.selenium_input('Мос', *NoAfraidChangeLocators.city)
-        self.selenium_click(*NoAfraidChangeLocators.select_city)
+        self.input_city('Мос', *NoAfraidChangeLocators.inp_address)
         self.selenium_input('test', *NoAfraidChangeLocators.street)
         self.js_input('6925', *NoAfraidChangeLocators.index)
         self.selenium_input(textfields, *NoAfraidChangeLocators.home)
@@ -183,10 +176,7 @@ class Step_2(BasePage):
         self.selenium_input('тест', *NoAfraidChangeLocators.firstname)
         self.selenium_input('тестович', *NoAfraidChangeLocators.lastname)
         self.scroll_to_element(*NoAfraidChangeLocators.sex)
-        self.wait_element(*NoAfraidChangeLocators.sex)
-        self.selenium_click(*NoAfraidChangeLocators.sex)
-        self.wait_element(*NoAfraidChangeLocators.sex_list)
-        self.select_sex(sex)
+        self.select_sex(sex, *NoAfraidChangeLocators.sex)
         self.js_input(self.age(age), *NoAfraidChangeLocators.birthday)
         time.sleep(0.6)
         self.wait_element(*NoAfraidChangeLocators.phone)
@@ -195,22 +185,20 @@ class Step_2(BasePage):
         self.selenium_input(email, *NoAfraidChangeLocators.email)
         self.js_input('6420001900', *NoAfraidChangeLocators.passport)
         self.js_input('04092019', *NoAfraidChangeLocators.date_start)
-        self.selenium_click(*NoAfraidChangeLocators.body)
+        self.selenium_click(*Common_Locators.body)
         self.js_input('650002', *NoAfraidChangeLocators.division)
         self.selenium_input('Кем-то выдан', *NoAfraidChangeLocators.pass_who_give)
 
         # Заполнение блока адреса регистрации
         # ____________________________________________________________________________________
         self.scroll_to_element(*NoAfraidChangeLocators.person1)
-        self.selenium_click(*NoAfraidChangeLocators.inp_address)
-        self.selenium_input('Мос', *NoAfraidChangeLocators.city)
-        self.selenium_click(*NoAfraidChangeLocators.select_city)
+        self.input_city('Мос', *NoAfraidChangeLocators.inp_address)
         self.selenium_input('Арсеньева', *NoAfraidChangeLocators.street)
         self.selenium_input('33', *NoAfraidChangeLocators.home)
         self.scroll_to_element(*NoAfraidChangeLocators.go_to_step_3)
         self.selenium_click(*NoAfraidChangeLocators.go_to_step_3)
         if (18 <= age <= 64 and sex == 'male') or (18 <= age <= 59 and sex == 'famale'):
-            if self.should_be(*NoAfraidChangeLocators.step3)==True:
+            if self.should_be(*Common_Locators.step3)==True:
                 return True
 
             else:
@@ -218,7 +206,7 @@ class Step_2(BasePage):
         else:
             self.wait_element(*NoAfraidChangeLocators.birthday_error)
             self.check_errors(*NoAfraidChangeLocators.birthday_error, 'Нарушены условия страхования')
-        self.is_element_present(*NoAfraidChangeLocators.step3)
+        self.is_element_present(*Common_Locators.step3)
 
     def personal_code_check(self, code):
         self.wait_element(*NoAfraidChangeLocators.step_2)
@@ -235,16 +223,14 @@ class Step_2(BasePage):
         self.selenium_input(email, *NoAfraidChangeLocators.email)
         self.js_input('6420001900', *NoAfraidChangeLocators.passport)
         self.js_input('04092019', *NoAfraidChangeLocators.date_start)
-        self.selenium_click(*NoAfraidChangeLocators.body)
+        self.selenium_click(*Common_Locators.body)
         self.js_input('650002', *NoAfraidChangeLocators.division)
         self.selenium_input('Кем-то выдан', *NoAfraidChangeLocators.pass_who_give)
 
         # Заполнение блока адреса регистрации
         # ____________________________________________________________________________________
         self.scroll_to_element(*NoAfraidChangeLocators.person1)
-        self.selenium_click(*NoAfraidChangeLocators.inp_address)
-        self.selenium_input('Мос', *NoAfraidChangeLocators.city)
-        self.selenium_click(*NoAfraidChangeLocators.select_city)
+        self.input_city('Мос', *NoAfraidChangeLocators.inp_address)
         self.selenium_input('Арсеньева', *NoAfraidChangeLocators.street)
         self.selenium_input('33', *NoAfraidChangeLocators.home)
         self.scroll_to_element(*NoAfraidChangeLocators.personal_code)
@@ -256,7 +242,7 @@ class Step_2(BasePage):
                 self.check_errors(*NoAfraidChangeLocators.personal_code_error,
                                   'Числовое значение от 4 до 8 символов включительно')
             else:
-                if self.should_be(*NoAfraidChangeLocators.step3)==True:
+                if self.should_be(*Common_Locators.step3)==True:
                     assert False, 'Некорректная валидация кода сотрудника'
                 else: assert False, 'Что-то пошло не по плану'
 
@@ -270,37 +256,37 @@ class Step_3(BasePage):
     def should_be_step_3(self):
         time.sleep(1)
         # self.wait_element(*NoAfraidChangeLocators.step3)
-        assert self.is_element_present(*NoAfraidChangeLocators.step3), "Не выполнен переход на третий шаг"
+        assert self.is_element_present(*Common_Locators.step3), "Не выполнен переход на третий шаг"
 
     def get_input_code(self):
-        self.scroll_to_element(*NoAfraidChangeLocators.get_code)
-        self.selenium_click(*NoAfraidChangeLocators.get_code)
-        self.wait_element(*NoAfraidChangeLocators.code)
-        self.selenium_input(self.driver.find_element(*NoAfraidChangeLocators.code).text, *NoAfraidChangeLocators.codeConfirm)
-        self.selenium_click(*NoAfraidChangeLocators.codeConfirmNext)
+        self.scroll_to_element(*Common_Locators.get_code)
+        self.selenium_click(*Common_Locators.get_code)
+        self.wait_element(*Common_Locators.code)
+        self.selenium_input(self.driver.find_element(*Common_Locators.code).text, *Common_Locators.codeConfirm)
+        self.selenium_click(*Common_Locators.codeConfirmNext)
         time.sleep(1)
     def accept_checkbox(self):
-        self.scroll_to_element(*NoAfraidChangeLocators.checkboxes)
-        x = len(self.driver.find_elements(*NoAfraidChangeLocators.checkboxes))
+        self.scroll_to_element(*Common_Locators.checkboxes)
+        x = len(self.driver.find_elements(*Common_Locators.checkboxes))
         # Активируем
         for i in range(1, x+1):
             self.driver.execute_script(f"document.getElementById('check{i}').click()")
-        self.selenium_click(*NoAfraidChangeLocators.step_to_pay)
+        self.selenium_click(*Common_Locators.step_to_pay)
 
 
 class Pay_step(BasePage):
 
     def go_to_pay(self):
-        self.wait_element(*NoAfraidChangeLocators.pan)
-        assert self.is_element_present(*NoAfraidChangeLocators.pan), "Не выполнен переход на эквайринг'"
-        self.js_input('9000000000000000001', *NoAfraidChangeLocators.pan)
+        self.wait_element(*Common_Locators.pan)
+        assert self.is_element_present(*Common_Locators.pan), "Не выполнен переход на эквайринг'"
+        self.js_input('9000000000000000001', *Common_Locators.pan)
         time.sleep(0.2)
-        self.driver.find_element(*NoAfraidChangeLocators.month).send_keys('12')
-        self.driver.find_element(*NoAfraidChangeLocators.year).send_keys('21')
-        self.js_input('123', *NoAfraidChangeLocators.cvc)
-        self.js_click(*NoAfraidChangeLocators.pay_button)
+        self.driver.find_element(*Common_Locators.month).send_keys('12')
+        self.driver.find_element(*Common_Locators.year).send_keys('21')
+        self.js_input('123', *Common_Locators.cvc)
+        self.js_click(*Common_Locators.pay_button)
 
-        self.wait_element(*NoAfraidChangeLocators.payment_info)
-        success = self.driver.find_element(*NoAfraidChangeLocators.payment_info_message).text
+        self.wait_element(*Common_Locators.payment_info)
+        success = self.driver.find_element(*Common_Locators.payment_info_message).text
         assert 'Операция выполнена успешно' == success, success
 

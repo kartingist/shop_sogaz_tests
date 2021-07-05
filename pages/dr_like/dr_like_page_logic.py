@@ -49,9 +49,7 @@ class Step_2(BasePage):
         # ____________________________________________________________________________________
 
         self.scroll_to_element(*DrLikeLocators.inp_address0)
-        self.selenium_click(*DrLikeLocators.inp_address0)
-        self.selenium_input('Мос', *DrLikeLocators.input_city0)
-        self.selenium_click(*DrLikeLocators.select_city)
+        self.input_city('Мос', *DrLikeLocators.inp_address0)
         self.selenium_input('Арсеньева', *DrLikeLocators.street0)
         self.js_input('692502', *DrLikeLocators.index0)
         self.selenium_input('33', *DrLikeLocators.house0)
@@ -63,9 +61,7 @@ class Step_2(BasePage):
         # Адрес фактического места жительства страхователя
 
         self.scroll_to_element(*DrLikeLocators.inp_address02)
-        self.selenium_click(*DrLikeLocators.inp_address02)
-        self.selenium_input('Мос', *DrLikeLocators.input_city0)
-        self.selenium_click(*DrLikeLocators.select_city0)
+        self.input_city('Мос', *DrLikeLocators.inp_address02)
         self.selenium_input('Арсеньева', *DrLikeLocators.street02)
         self.js_input('692502', *DrLikeLocators.index02)
         self.selenium_input('33', *DrLikeLocators.house02)
@@ -94,9 +90,7 @@ class Step_2(BasePage):
         # Адрес регистрации застрахованного
 
         self.scroll_to_element(*DrLikeLocators.inp_address1)
-        self.selenium_click(*DrLikeLocators.inp_address1)
-        self.selenium_input('Мос', *DrLikeLocators.input_city1)
-        self.selenium_click(*DrLikeLocators.select_city1)
+        self.input_city('Мос', *DrLikeLocators.inp_address1)
         self.selenium_input('Арсеньева', *DrLikeLocators.street1)
         self.js_input('692502', *DrLikeLocators.index1)
         self.selenium_input('33', *DrLikeLocators.house1)
@@ -108,9 +102,7 @@ class Step_2(BasePage):
         # Адрес фактического места жительства застрахованного
 
         self.scroll_to_element(*DrLikeLocators.inp_address12)
-        self.selenium_click(*DrLikeLocators.inp_address12)
-        self.selenium_input('Мос', *DrLikeLocators.input_city12)
-        self.selenium_click(*DrLikeLocators.select_city12)
+        self.input_city('Мос', *DrLikeLocators.inp_address12)
         self.selenium_input('Арсеньева', *DrLikeLocators.street12)
         self.js_input('692502', *DrLikeLocators.index12)
         self.selenium_input('33', *DrLikeLocators.house12)

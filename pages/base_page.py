@@ -1,5 +1,5 @@
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
-
+from .base_locators import Common_Locators
 # from .no_afraid_change.locators import DrLikeStep1
 from .no_afraid_change.locators import NoAfraidChangeLocators
 from selenium.webdriver.support.ui import WebDriverWait
@@ -27,9 +27,9 @@ class BasePage():
 
     def close_popaps(self):  # Закрываем попапы
         # self.wait_element(*NoAfraidChangeLocators.popap1)
-        # self.driver.find_element(*NoAfraidChangeLocators.popap1).click()
-        self.driver.find_element(*NoAfraidChangeLocators.popap2).click()
-        self.driver.find_element(*NoAfraidChangeLocators.popap3).click()
+        # self.driver.find_element(*Common_Locators.popap1).click()
+        self.driver.find_element(*Common_Locators.popap2).click()
+        self.driver.find_element(*Common_Locators.popap3).click()
 
 
     def scroll_to_element(self, how, what): # Нужна доработка, ожидание не работает
@@ -59,24 +59,26 @@ class BasePage():
     def selenium_click(self, how, what):
         self.driver.find_element(how, what).click()
 
-    def select_sex(self, sex):
+    def select_sex(self, sex, how, what):
+        self.wait_element(how, what)
+        self.selenium_click(how, what)
+        time.sleep(0.05)
         if sex=='м' or sex=='male':
-            self.element_to_be_clickable(*NoAfraidChangeLocators.sex)
+            self.element_to_be_clickable(how, what)
             time.sleep(0.1)
-            self.element_to_be_clickable(*NoAfraidChangeLocators.male)
-            self.driver.find_element(*NoAfraidChangeLocators.male).click()
+            self.element_to_be_clickable(*Common_Locators.male)
+            self.driver.find_element(*Common_Locators.male).click()
         elif sex=='ж' or sex=='famale':
-            self.element_to_be_clickable(*NoAfraidChangeLocators.sex)
+            self.element_to_be_clickable(how, what)
             time.sleep(0.1)
-            self.element_to_be_clickable(*NoAfraidChangeLocators.famale)
-            self.driver.find_element(*NoAfraidChangeLocators.famale).click()
+            self.element_to_be_clickable(*Common_Locators.famale)
+            self.driver.find_element(*Common_Locators.famale).click()
     def check_errors(self, how, what, error):
         if len(self.driver.find_element(how, what).text)>0:
             assert self.driver.find_element(how, what).text==error, \
                 f'Селектор({what})  ' \
                 f'Ожидаемый результат: {error}, ' \
                 f'Фактический результат: {self.driver.find_element(how, what).text}'
-
         else:
             assert False, f'Отсутствует ошибка валидации, cелектор: {what}'
 
@@ -89,12 +91,15 @@ class BasePage():
         except (TimeoutException):
             return False
         return True
+
     def cnt(self, how, what):
-        x = len(self.driver.find_elements(how, what))
-        print(x)
-        return x
+        cnt_programs = len(self.driver.find_elements(how, what))
+        return cnt_programs
 
-
+    def input_city(self, city,  how, what):
+        self.selenium_click(how, what)
+        self.selenium_input(city, *Common_Locators.input_city)
+        self.selenium_click(*Common_Locators.select_city)
 
 
 
