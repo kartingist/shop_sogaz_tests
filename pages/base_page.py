@@ -89,6 +89,12 @@ class BasePage():
         except (TimeoutException):
             return False
         return True
+    def cnt(self, how, what):
+        x = len(self.driver.find_elements(how, what))
+        print(x)
+        return x
+
+
 
 
 

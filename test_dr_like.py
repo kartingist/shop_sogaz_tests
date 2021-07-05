@@ -10,10 +10,10 @@ from .link import link
 # оставим до лучших времен...
 
 @pytest.mark.parametrize('link', link,  scope='function')
-@pytest.mark.parametrize('region', [0, 1, 2], scope='function')
-@pytest.mark.parametrize('franchise', [50, 30, 20],   scope='function')
-# @pytest.mark.parametrize('region', [0], scope='function')
-# @pytest.mark.parametrize('franchise', [50],   scope='function')
+# @pytest.mark.parametrize('region', [0, 1, 2], scope='function')
+# @pytest.mark.parametrize('franchise', [50, 30, 20],   scope='function')
+@pytest.mark.parametrize('region', [0], scope='function')
+@pytest.mark.parametrize('franchise', [50],   scope='function')
 def test_base(browser, link, region, franchise):
 
     link = link + 'accident/doctor_like/'
@@ -39,6 +39,6 @@ def test_base(browser, link, region, franchise):
 
     pay_step = Pay_step(browser, link)
     pay_step.sbp()
-    if 'https://sogazrelease.support.zetest.site/' not in link and 'http://shop.sogaz.loc/' not in link:
-        pay_step.go_to_pay()
+    # if 'https://sogazrelease.support.zetest.site/' not in link and 'http://shop.sogaz.loc/' not in link:
+    #     pay_step.go_to_pay()
 
