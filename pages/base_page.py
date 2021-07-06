@@ -1,4 +1,4 @@
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException, ElementNotInteractableException
 from .base_locators import Common_Locators
 # from .no_afraid_change.locators import DrLikeStep1
 from .no_afraid_change.locators import NoAfraidChangeLocators
@@ -100,8 +100,6 @@ class BasePage():
         self.selenium_click(how, what)
         self.selenium_input(city, *Common_Locators.input_city)
         self.selenium_click(*Common_Locators.select_city)
-
-
 
 
 

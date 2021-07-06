@@ -1,24 +1,8 @@
 from .locators import *
 from ..base_page import BasePage
+from ..base_locators import Common_Locators
 import time
 
-
-class Step_1(BasePage):
-
-    def step1(self, region, franchise):
-        self.js_input('03081994', *DrLikeLocators.birthday_step1)
-        self.driver.execute_script(f"document.getElementById('at_work{region}').click()")
-        self.driver.execute_script(f"document.getElementById('franchise{franchise}').click()")
-        self.selenium_click(*DrLikeLocators.sep1_calc)
-        if self.cnt(*DrLikeLocators.tarifs)==0:
-            assert False, 'Отсутствуют программы страхования'
-        else:
-            self.wait_element(*DrLikeLocators.box_program)
-            self.selenium_click(*DrLikeLocators.program1)
-            self.scroll_to_element(*DrLikeLocators.go_to_step_2)
-
-    def go_to_next_step(self):
-        self.selenium_click(*DrLikeLocators.go_to_step_2)
 
 
 class Step_2(BasePage):
@@ -115,35 +99,75 @@ class Step_2(BasePage):
 
 
 # # _________________________________________________________________________________________________________
-#     def anketa_required_fields(self):
-#         self.wait_element(*NoAfraidChangeLocators.step_2)
-#         # Заполнение первого блока личных данных
-#         # ____________________________________________________________________________________
-#         self.selenium_input('тестов', *NoAfraidChangeLocators.surname)
-#         self.selenium_input('тест', *NoAfraidChangeLocators.firstname)
-#         self.selenium_input('тестович', *NoAfraidChangeLocators.lastname)
-#         self.js_input('03081994', *NoAfraidChangeLocators.birthday)
-#         time.sleep(0.6)
-#         self.wait_element(*NoAfraidChangeLocators.phone)
-#         self.selenium_click(*NoAfraidChangeLocators.phone)
-#         self.selenium_input('9990403660', *NoAfraidChangeLocators.phone)
-#         self.selenium_input('awjon94@gmail.com', *NoAfraidChangeLocators.email)
-#         self.js_input('6420001900', *NoAfraidChangeLocators.passport)
-#         self.js_input('04092019', *NoAfraidChangeLocators.date_start)
-#         self.selenium_click(*NoAfraidChangeLocators.body)
-#         self.js_input('650002', *NoAfraidChangeLocators.division)
-#         self.selenium_input('Кем-то выдан', *NoAfraidChangeLocators.pass_who_give)
-#
-#         # Заполнение блока адреса регистрации
-#         # ____________________________________________________________________________________
-#         self.scroll_to_element(*NoAfraidChangeLocators.person1)
-#         self.selenium_click(*NoAfraidChangeLocators.inp_address)
-#         self.selenium_input('Мос', *NoAfraidChangeLocators.city)
-#         self.selenium_click(*NoAfraidChangeLocators.select_city)
-#         self.selenium_input('Арсеньева', *NoAfraidChangeLocators.street)
-#         self.selenium_input('33', *NoAfraidChangeLocators.home)
-#         self.scroll_to_element(*NoAfraidChangeLocators.go_to_step_3)
-#         self.selenium_click(*NoAfraidChangeLocators.go_to_step_3)
+    def anketa_required_fields(self):
+        self.wait_element(*DrLikeLocators.step_2)
+
+        # ____________________________________________________________________________________
+        # Страхователь
+        self.selenium_input('тестов', *DrLikeLocators.surname0)
+        self.selenium_input('тест', *DrLikeLocators.firstname0)
+        self.js_input('03081994', *DrLikeLocators.birthday0)
+        time.sleep(0.6)
+        self.wait_element(*DrLikeLocators.phone0)
+        self.selenium_click(*DrLikeLocators.phone0)
+        self.selenium_input('9990403660', *DrLikeLocators.phone0)
+        self.selenium_input('awjon94@gmail.com', *DrLikeLocators.email)
+        self.js_input('6420001900', *DrLikeLocators.pass0)
+        self.js_input('04092019', *DrLikeLocators.date_start0)
+        self.selenium_click(*DrLikeLocators.body)
+        self.js_input('650002', *DrLikeLocators.division0)
+        self.selenium_input('Кем-то выдан', *DrLikeLocators.pass_who_give0)
+
+        # Адрес регистрации страхователя
+        # ____________________________________________________________________________________
+
+        self.scroll_to_element(*DrLikeLocators.inp_address0)
+        self.input_city('Мос', *DrLikeLocators.inp_address0)
+        self.selenium_input('Арсеньева', *DrLikeLocators.street0)
+        self.selenium_input('33', *DrLikeLocators.house0)
+        self.selenium_input('Уссурийск', *DrLikeLocators.birth_place0)
+
+        # Адрес фактического места жительства страхователя
+
+        self.scroll_to_element(*DrLikeLocators.inp_address02)
+        self.input_city('Мос', *DrLikeLocators.inp_address02)
+        self.selenium_input('Арсеньева', *DrLikeLocators.street02)
+        self.selenium_input('33', *DrLikeLocators.house02)
+
+        # Застрахованный
+
+        self.scroll_to_element(*DrLikeLocators.surname1)
+        self.selenium_input('тестов', *DrLikeLocators.surname1)
+        self.selenium_input('тест', *DrLikeLocators.firstname1)
+        # self.js_input('03081994', *DrLikeLocators.birthday1)
+        time.sleep(0.6)
+        self.wait_element(*DrLikeLocators.phone1)
+        self.selenium_click(*DrLikeLocators.phone1)
+        self.selenium_input('9990403660', *DrLikeLocators.phone1)
+        self.selenium_input('awjon94@gmail.com', *DrLikeLocators.email1)
+        self.js_input('6420001900', *DrLikeLocators.pass1)
+        self.js_input('04092019', *DrLikeLocators.date_start1)
+        self.selenium_click(*DrLikeLocators.body)
+        self.js_input('650002', *DrLikeLocators.division1)
+        self.selenium_input('Кем-то выдан', *DrLikeLocators.pass_who_give1)
+
+        # Адрес регистрации застрахованного
+
+        self.scroll_to_element(*DrLikeLocators.inp_address1)
+        self.input_city('Мос', *DrLikeLocators.inp_address1)
+        self.selenium_input('Арсеньева', *DrLikeLocators.street1)
+        self.selenium_input('33', *DrLikeLocators.house1)
+        self.selenium_input('Уссурийск', *DrLikeLocators.birth_place1)
+
+        # Адрес фактического места жительства застрахованного
+
+        self.scroll_to_element(*DrLikeLocators.inp_address12)
+        self.input_city('Мос', *DrLikeLocators.inp_address12)
+        self.selenium_input('Арсеньева', *DrLikeLocators.street12)
+        self.selenium_input('33', *DrLikeLocators.house12)
+
+        self.scroll_to_element(*DrLikeLocators.go_to_step3)
+        self.selenium_click(*DrLikeLocators.go_to_step3)
 #
 #     def anketa_null_fields_errors(self):
 #         self.wait_element(*NoAfraidChangeLocators.step_2)
@@ -313,46 +337,7 @@ class Step_2(BasePage):
 #         else:
 #             return True
 #
-class Step_3(BasePage):
-    def should_be_step_3(self):
-        assert self.is_element_present(*DrLikeLocators.step3), "Не выполнен переход на третий шаг"
-        self.wait_element(*DrLikeLocators.step3)
-        self.scroll_to_element(*DrLikeLocators.get_code)
-        self.wait_element(*DrLikeLocators.email_confirm)
-        time.sleep(3)
-
-    def get_input_code(self):
-        self.selenium_click(*DrLikeLocators.get_code)
-        self.wait_element(*DrLikeLocators.code)
-        self.selenium_input(self.driver.find_element(*DrLikeLocators.code).text, *DrLikeLocators.codeConfirm)
-        self.selenium_click(*DrLikeLocators.codeConfirmNext)
-        time.sleep(1)
-    def accept_checkbox(self):
-        self.scroll_to_element(*DrLikeLocators.checkboxes)
-        x = len(self.driver.find_elements(*DrLikeLocators.checkboxes))
-        # Активируем
-        for i in range(1, x+1):
-            self.driver.execute_script(f"document.getElementById('check{i}').click()")
-        self.selenium_click(*DrLikeLocators.step_to_pay)
 #
 #
-class Pay_step(BasePage):
-    def sbp(self):
-        self.wait_element(*DrLikeLocators.card_pay)
-        self.selenium_click(*DrLikeLocators.card_pay)
 
-    def go_to_pay(self):
-
-        self.wait_element(*DrLikeLocators.pan)
-        assert self.is_element_present(*DrLikeLocators.pan), "Не выполнен переход на эквайринг'"
-        self.js_input('9000000000000000001', *DrLikeLocators.pan)
-        time.sleep(0.2)
-        self.driver.find_element(*DrLikeLocators.month).send_keys('12')
-        self.driver.find_element(*DrLikeLocators.year).send_keys('21')
-        self.js_input('123', *DrLikeLocators.cvc)
-        self.js_click(*DrLikeLocators.pay_button)
-
-        self.wait_element(*DrLikeLocators.payment_info)
-        success = self.driver.find_element(*DrLikeLocators.payment_info_message).text
-        assert 'Операция выполнена успешно' == success, success
 

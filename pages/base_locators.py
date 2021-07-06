@@ -29,9 +29,10 @@ class Common_Locators:
 
     checkboxes = ((By.XPATH, '//*[@id="step3_inner-confirm"]/div[2]/div/div/div'))
     step_to_pay = (By.CSS_SELECTOR, '#step_btn_3')
-    card_pay = (By.CSS_SELECTOR, '#payLink')
 
     # _______________________________________________________________________
+    # SBP
+    card_pay = (By.CSS_SELECTOR, '#payLink')
     # Эквайринг
 
     pan = (By.CSS_SELECTOR, '#pan')
