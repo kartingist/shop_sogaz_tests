@@ -4,11 +4,10 @@ import time
 
 class Step_3(BasePage):
     def should_be_step_3(self):
-        assert self.is_element_present(*Common_Locators.step3), "Не выполнен переход на третий шаг"
-        self.wait_element(*Common_Locators.step3)
+        assert self.should_be(*Common_Locators.step3), "Не выполнен переход на третий шаг"
         self.scroll_to_element(*Common_Locators.get_code)
         self.wait_element(*Common_Locators.email_confirm)
-        time.sleep(3)
+        # time.sleep(3)
 
     def get_input_code(self):
         self.selenium_click(*Common_Locators.get_code)
@@ -33,13 +32,20 @@ class Pay_step(BasePage):
 
         self.wait_element(*Common_Locators.pan)
         assert self.is_element_present(*Common_Locators.pan), "Не выполнен переход на эквайринг'"
-        self.js_input('9000000000000000001', *Common_Locators.pan)
+        self.js_input('4111 1111 1111 1111', *Common_Locators.pan)
         time.sleep(0.2)
         self.driver.find_element(*Common_Locators.month).send_keys('12')
-        self.driver.find_element(*Common_Locators.year).send_keys('21')
+        self.driver.find_element(*Common_Locators.year).send_keys('26')
         self.js_input('123', *Common_Locators.cvc)
         self.js_click(*Common_Locators.pay_button)
 
         self.wait_element(*Common_Locators.payment_info)
-        success = self.driver.find_element(*Common_Locators.payment_info_message).text
-        assert 'Операция выполнена успешно' == success, success
+        # payment_error_failed = self.should_be(*Common_Locators.payment_error_failed)
+        payment_success_message= self.should_be(*Common_Locators.payment_success_message)
+        # payment_error_suspended= self.should_be(*Common_Locators.payment_error_suspended)
+        if payment_success_message == True:
+            assert True
+        else: assert False, 'Сбой оплаты'
+
+
+

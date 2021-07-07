@@ -229,10 +229,10 @@ class DrLikeLocators:
     month = (By.CSS_SELECTOR, '#month')
     year = (By.CSS_SELECTOR, '#year')
     cvc = (By.CSS_SELECTOR, '#cvc')
-    pay_button = (By.CSS_SELECTOR, '#payment-form>div.btn-group>button.btn.btn-primary')
-    cancel_button = (By.CSS_SELECTOR, '#payment-form > div.btn-group > button:nth-child(2)')
-    payment_info = (By.CSS_SELECTOR, "body > div.container > div.payment-info")
-    payment_info_message = (By.XPATH, '/html/body/div[1]/div[2]/h2')
+    pay_button = (By.CSS_SELECTOR, '#payBtn')
+    cancel_button = (By.CSS_SELECTOR, '#payment-form > div.btn-group > div.main-btns > input.btn.button_cancel')
+    payment_info = (By.CSS_SELECTOR, "#result > div.payment-info")
+    payment_info_message = (By.XPATH, "//H2[@class='result-success'][text()='Платеж завершен успешно'][stile()='display=true']")
 
 
 

@@ -1,5 +1,6 @@
 import pytest
 from .pages.no_afraid_change.no_afraid_page_logic import *
+from .pages.step_3_and_pay import *
 import time
 from .link import link
 
@@ -29,8 +30,9 @@ def test_full_run(browser, link):
         if 'https://sogazrelease.support.zetest.site/' not in link and 'http://shop.sogaz.loc/' not in link:
             pay_step = Pay_step(browser, link)
             pay_step.go_to_pay()
-# #
-# #
+
+
+
 @pytest.mark.parametrize('link', link,  scope='function')
 @pytest.mark.parametrize('fio, whogiveandstreet', [("тест", "тест 123"), ("тест-тест", "тест."), ("тест тест", "тест'"), ("тест'", "тест_"), ("ТЕСТ", "ТЕСТ")])
 def test_required_fields(browser, link, fio, whogiveandstreet):

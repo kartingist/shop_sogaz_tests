@@ -4,4 +4,4 @@ link=[['http://shop.sogaz.loc/'], ['https://sogazdevelop.support.zetest.site/'],
 # link=['https://sogazdevelop.support.zetest.site/']
 # # link='https://sogazrelease.support.zetest.site/'
 # # link='https://shop.sogaz.ru/'
-link=link[0]
+link=link[1]
