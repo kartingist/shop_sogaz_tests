@@ -3,6 +3,9 @@ from ..base_locators import Common_Locators
 from ..base_page import BasePage
 import time
 import random
+from datetime import date
+from dateutil.relativedelta import relativedelta
+
 email=[f'user{str(random.randint(90000, 99999))}@gmail.com']
 
 
@@ -252,4 +255,37 @@ class Step_2(BasePage):
         else:
             return True
 
+    def pass_date_start_negative(self, birth_day, days):
+        self.js_input((date.today() - relativedelta
+        (years=birth_day+1)).strftime('%d%m%Y'), *NoAfraidChangeLocators.birthday)
+
+        self.js_input((date.today() + relativedelta
+        (years=-1, days=days)).strftime('%d%m%Y'), *NoAfraidChangeLocators.date_start)
+
+        self.js_click(*NoAfraidChangeLocators.go_to_step_3)
+        self.should_be(*NoAfraidChangeLocators.date_start_error)
+        if birth_day == 14:
+            self.check_errors(*NoAfraidChangeLocators.date_start_error,
+                'Дата выдачи паспорта некорректна:'
+                ' паспорт не может быть выдан ранее 14-ти лет с даты рождения')
+        elif birth_day == 0 or (birth_day == 20 and  days== 370):
+            self.check_errors(*NoAfraidChangeLocators.date_start_error,
+                'Дата больше текущей')
+
+        else:
+            self.check_errors(*NoAfraidChangeLocators.date_start_error,
+                              'Дата выдачи паспорта некорректна:'
+                              ' срок действия указанного паспорта истек')
+
+
+
+    def pass_date_start_positive(self, birth_day, days):
+        self.js_input((date.today() - relativedelta(years=birth_day+1)).strftime('%d%m%Y'), *NoAfraidChangeLocators.birthday)
+        self.js_input((date.today() + relativedelta(years=-1, days=days)).strftime('%d%m%Y'), *NoAfraidChangeLocators.date_start)
+
+        self.js_click(*NoAfraidChangeLocators.go_to_step_3)
+'''
+дата выдачи 01 01 2021
+возраст 12
+'''
 

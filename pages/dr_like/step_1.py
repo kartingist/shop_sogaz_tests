@@ -2,6 +2,7 @@ from .locators import *
 from ..base_page import BasePage
 
 
+
 class Step_1(BasePage):
 
     def step1full(self, region, franchise):

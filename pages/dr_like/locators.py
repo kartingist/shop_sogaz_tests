@@ -1,7 +1,5 @@
 from selenium.webdriver.common.by import By
 
-
-
 class DrLikeLocators:
     body = (By.CSS_SELECTOR, "body")
     # Попапы
@@ -62,7 +60,7 @@ class DrLikeLocators:
     # Адрес регистрации страхователя
 
     inp_address0 = (By.CSS_SELECTOR, "#select2-city0-container")
-    inp_address_error0 = (By.CSS_SELECTOR, '#inp_address0 > div:nth-child(1) > div.col-sm-4.col-12 > div')
+    inp_address0_error = (By.CSS_SELECTOR, '#inp_address0 > div:nth-child(1) > div.col-sm-4.col-12 > div')
     input_city0 = (By.XPATH, "/html/body/span/span/span[1]/input")
     select_city0 = (By.XPATH, "//LI[@class='select2-results__option select2-results__option--highlighted'][1]")
 
@@ -92,7 +90,7 @@ class DrLikeLocators:
     checkbox1= (By.CSS_SELECTOR, '#live_place_block_0 > div.form-check.abc-checkbox > label')
 
     inp_address02 = (By.CSS_SELECTOR, "#select2-city02-container")
-    inp_address_error02 = (By.XPATH, '//*[@id="live_place_block_0"]/div[2]/div[1]/div')
+    inp_address02_error = (By.XPATH, '//*[@id="live_place_block_0"]/div[2]/div[1]/div')
     input_city = (By.XPATH, "/html/body/span/span/span[1]/input")
     select_city = (By.XPATH, "//LI[@class='select2-results__option select2-results__option--highlighted'][1]")
 
@@ -100,16 +98,16 @@ class DrLikeLocators:
     street02_error = (By.XPATH, '//*[@id="live_place_block_0"]/div[2]/div[2]/div')
 
     index02 = (By.CSS_SELECTOR, '#index02')
-    index02_error = (By.XPATH, '//*[@id="live_place_block_0"]/div[1]/div[3]/div')
+    index02_error = (By.XPATH, '//*[@id="live_place_block_0"]/div[2]/div[3]/div')
 
     house02 = (By.CSS_SELECTOR, '#house02')
-    house02_error = (By.XPATH, '//*[@id="live_place_block_0"]/div[2]/div[1]/div')
+    house02_error = (By.XPATH, '//*[@id="live_place_block_0"]/div[3]/div[1]/div')
 
     korpus02 = (By.CSS_SELECTOR, '#korpus02')
-    korpus02_error = (By.XPATH, '//*[@id="live_place_block_0"]/div[2]/div[2]/div')
+    korpus02_error = (By.XPATH, '//*[@id="live_place_block_0"]/div[3]/div[2]/div')
 
     building02 = (By.CSS_SELECTOR, '#building02')
-    building02_error = (By.XPATH, '//*[@id="live_place_block_0"]/div[2]/div[3]/div')
+    building02_error = (By.XPATH, '//*[@id="live_place_block_0"]/div[3]/div[3]/div')
 
     flat02 = (By.CSS_SELECTOR, '#flat02')
     flat02_error = (By.XPATH, '//*[@id="live_place_block_0"]/div[3]/div[4]/div')
@@ -140,21 +138,21 @@ class DrLikeLocators:
     type_doc= (By.CSS_SELECTOR, '#select2-document1-container')
 
     pass1 = (By.CSS_SELECTOR, '#pass1')
-    pass1_error = (By.XPATH, '//*[@id="person1"]/div[3]/div[1]/div')
+    pass1_error = (By.XPATH, '//*[@id="person1"]/div[4]/div[1]/div')
 
     date_start1 = (By.CSS_SELECTOR, '#date_start1')
-    date_start1_error = (By.XPATH, '//*[@id="person1"]/div[3]/div[2]/div/div')
+    date_start1_error = (By.XPATH, '//*[@id="person1"]/div[4]/div[2]/div/div')
 
     division1 = (By.CSS_SELECTOR, '#division1')
-    division1_error = (By.XPATH, '//*[@id="person1"]/div[3]/div[3]/div')
+    division1_error = (By.XPATH, '//*[@id="person1"]/div[4]/div[3]/div')
 
     pass_who_give1 = (By.CSS_SELECTOR, '#pass_who_give1')
-    pass_who_give1_error = (By.XPATH, '//*[@id="person1"]/div[4]/div/div')
+    pass_who_give1_error = (By.XPATH, '//*[@id="person1"]/div[5]/div/div')
 
     # Адрес регистрации застрахованного
 
     inp_address1 = (By.CSS_SELECTOR, "#select2-city1-container")
-    inp_address_error1 = (By.CSS_SELECTOR, '#inp_address1 > div:nth-child(1) > div.col-sm-4.col-12 > div')
+    inp_address1_error = (By.CSS_SELECTOR, '#inp_address1 > div:nth-child(1) > div.col-sm-4.col-12 > div')
     input_city1 = (By.XPATH, "/html/body/span/span/span[1]/input")
     select_city1 = (By.XPATH, "//LI[@class='select2-results__option select2-results__option--highlighted'][1]")
 
@@ -184,7 +182,7 @@ class DrLikeLocators:
     checkbox2 = (By.CSS_SELECTOR, '#live_place_block_1 > div.form-check.abc-checkbox > label')
 
     inp_address12 = (By.CSS_SELECTOR, "#select2-city12-container")
-    inp_address_error12 = (By.XPATH, '//*[@id="live_place_block_1"]/div[2]/div[1]/div')
+    inp_address12_error = (By.XPATH, '//*[@id="live_place_block_1"]/div[2]/div[1]/div')
     input_city12 = (By.XPATH, "/html/body/span/span/span[1]/input")
     select_city12 = (By.XPATH, "//LI[@class='select2-results__option select2-results__option--highlighted'][1]")
 
@@ -192,48 +190,21 @@ class DrLikeLocators:
     street12_error = (By.XPATH, '//*[@id="live_place_block_1"]/div[2]/div[2]/div')
 
     index12 = (By.CSS_SELECTOR, '#index12')
-    index12_error = (By.XPATH, '//*[@id="live_place_block_1"]/div[1]/div[3]/div')
+    index12_error = (By.XPATH, '//*[@id="live_place_block_1"]/div[2]/div[3]/div')
 
     house12 = (By.CSS_SELECTOR, '#house12')
-    house12_error = (By.XPATH, '//*[@id="live_place_block_1"]/div[2]/div[1]/div')
+    house12_error = (By.XPATH, '//*[@id="live_place_block_1"]/div[3]/div[1]/div')
 
     korpus12 = (By.CSS_SELECTOR, '#korpus12')
-    korpus12_error = (By.XPATH, '//*[@id="live_place_block_1"]/div[2]/div[2]/div')
+    korpus12_error = (By.XPATH, '//*[@id="live_place_block_1"]/div[3]/div[2]/div')
 
     building12 = (By.CSS_SELECTOR, '#building12')
-    building12_error = (By.XPATH, '//*[@id="live_place_block_1"]/div[2]/div[3]/div')
+    building12_error = (By.XPATH, '//*[@id="live_place_block_1"]/div[3]/div[3]/div')
 
     flat12 = (By.CSS_SELECTOR, '#flat12')
     flat12_error = (By.XPATH, '//*[@id="live_place_block_1"]/div[3]/div[4]/div')
 
-    go_to_step3 = (By.CSS_SELECTOR, '#step_btn_2 > a')
-
-    # Шаг 3
-    # заполнение личных данных
-    # _______________________________________________________________________
-    step3 = (By.CSS_SELECTOR, '#step3-ajax_data')
-
-    email_confirm = (By.CSS_SELECTOR, '#step3_inner-confirm > div.desigion__item-inner-email-confirm')
-    get_code = (By.CSS_SELECTOR, "#get_code")
-    code = (By.CSS_SELECTOR, "#hideOnLock > div > div:nth-child(3) > div > div > div:nth-child(3)")
-    codeConfirm = (By.CSS_SELECTOR, "#codeConfirm")
-    codeConfirmNext = (By.CSS_SELECTOR, "#codeConfirmNext")
-
-    checkboxes = ((By.XPATH, '//*[@id="step3_inner-confirm"]/div[2]/div/div/div'))
-    step_to_pay = (By.CSS_SELECTOR, '#step_btn_3')
-    card_pay = (By.CSS_SELECTOR, '#payLink')
-
-    # Эквайринг
-    # _______________________________________________________________________
-    pan = (By.CSS_SELECTOR, '#pan')
-    month = (By.CSS_SELECTOR, '#month')
-    year = (By.CSS_SELECTOR, '#year')
-    cvc = (By.CSS_SELECTOR, '#cvc')
-    pay_button = (By.CSS_SELECTOR, '#payBtn')
-    cancel_button = (By.CSS_SELECTOR, '#payment-form > div.btn-group > div.main-btns > input.btn.button_cancel')
-    payment_info = (By.CSS_SELECTOR, "#result > div.payment-info")
-    payment_info_message = (By.XPATH, "//H2[@class='result-success'][text()='Платеж завершен успешно'][stile()='display=true']")
-
+    go_to_step_3 = (By.CSS_SELECTOR, '#step_btn_2 > a')
 
 
 

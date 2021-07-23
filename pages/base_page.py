@@ -33,7 +33,8 @@ class BasePage():
 
 
     def scroll_to_element(self, how, what): # Нужна доработка, ожидание не работает
-        self.driver.execute_script("return arguments[0].scrollIntoView(true);", WebDriverWait(self.driver, 40).until(EC.visibility_of_element_located((how, what))))
+        self.driver.execute_script("return arguments[0].scrollIntoView(true);", WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((how, what))))
+        self.wait_element(how, what)
         time.sleep(1.7)
 
     def wait_element(self, how, what):
@@ -51,11 +52,12 @@ class BasePage():
 
 
     def element_to_be_clickable(self, how, what):
-        WebDriverWait(self.driver, 40).until(EC.element_to_be_clickable((how, what)))
+        WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((how, what)))
 
     def age(self, years):
         age = date.today() - relativedelta(years=years)
         return age.strftime('%d%m%Y')
+
     def selenium_click(self, how, what):
         self.driver.find_element(how, what).click()
 
@@ -100,6 +102,8 @@ class BasePage():
         self.selenium_click(how, what)
         self.selenium_input(city, *Common_Locators.input_city)
         self.selenium_click(*Common_Locators.select_city)
+
+
 
 
 

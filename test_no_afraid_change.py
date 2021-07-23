@@ -3,11 +3,12 @@ from .pages.no_afraid_change.no_afraid_page_logic import *
 from .pages.step_3_and_pay import *
 import time
 from .link import link
+from .pages.validate_data import *
 
 
+link=link[0]
 
 
-#
 @pytest.mark.parametrize('link', link,  scope='function')
 def test_full_run(browser, link):
 
@@ -34,9 +35,9 @@ def test_full_run(browser, link):
 
 
 @pytest.mark.parametrize('link', link,  scope='function')
-@pytest.mark.parametrize('fio, whogiveandstreet', [("тест", "тест 123"), ("тест-тест", "тест."), ("тест тест", "тест'"), ("тест'", "тест_"), ("ТЕСТ", "ТЕСТ")])
-def test_required_fields(browser, link, fio, whogiveandstreet):
-
+@pytest.mark.parametrize('fio', CyrillicValidate_positive)
+def test_fio_positive(browser, link, fio):
+    whogiveandstreet='Тест'
     link = link + 'accident/no_afraid_change/#'
     step_1 = Step_1(browser, link)
     step_1.open()
@@ -50,6 +51,22 @@ def test_required_fields(browser, link, fio, whogiveandstreet):
     step_3 = Step_3(browser, link)
     step_3.should_be_step_3()
 
+@pytest.mark.parametrize('link', link,  scope='function')
+@pytest.mark.parametrize('whogiveandstreet', CyrillicAndNumberValidate)
+def test_whogiveandstreet_validate(browser, link, whogiveandstreet):
+    fio='Тест'
+    link = link + 'accident/no_afraid_change/#'
+    step_1 = Step_1(browser, link)
+    step_1.open()
+    step_1.close_popaps()
+    step_1.go_to_next_step()
+
+    step_2 = Step_2(browser, link)
+    step_2.should_be_step_2()
+    step_2.anketa_required_fields(fio, whogiveandstreet)
+
+    step_3 = Step_3(browser, link)
+    step_3.should_be_step_3()
 
 @pytest.mark.parametrize('link', link,  scope='function')
 def test_null_fields_errors(browser, link ):
@@ -69,7 +86,7 @@ def test_null_fields_errors(browser, link ):
 
 
 @pytest.mark.parametrize('link', link,  scope='function')
-@pytest.mark.parametrize('testfio, textfields', [("test", "11"), ("теst", "aA"), ("тест test", "фФ"), ("тест.", ".!"), ("тест@", "№;%"), ("тест123", "?*()")])
+@pytest.mark.parametrize('testfio, textfields', CyrillicValidate_negative)
 def test_anketa_validation_errors(browser, link, testfio, textfields):
     link = link + 'accident/no_afraid_change/#'
     step_1 = Step_1(browser, link)
@@ -83,16 +100,7 @@ def test_anketa_validation_errors(browser, link, testfio, textfields):
 
 
 @pytest.mark.parametrize('link', link,  scope='function')
-@pytest.mark.parametrize('age, sex', [
-                                      (17, 'male'),
-                                      (18, 'male'),
-                                      (64, 'male'),
-                                      (65, 'male'),
-                                      (17, 'famale'),
-                                      (18, 'famale'),
-                                      (59, 'famale'),
-                                      (60, 'famale')
-                                      ])
+@pytest.mark.parametrize('age, sex', BirthdayValidate)
 def test_age(browser, link, age, sex):
     link = link + 'accident/no_afraid_change/#'
     step_1 = Step_1(browser, link)
@@ -105,7 +113,7 @@ def test_age(browser, link, age, sex):
     step_2.age_check(age, sex)
 #
 @pytest.mark.parametrize('link', link,  scope='function')
-@pytest.mark.parametrize('code', ["", "1", "333", "4444", "88888888", "999999999"])
+@pytest.mark.parametrize('code', PersonalCodeValidate)
 def test_validate_personal_code(browser, link, code):
     link = link + 'accident/no_afraid_change/#'
     step_1 = Step_1(browser, link)
@@ -119,4 +127,30 @@ def test_validate_personal_code(browser, link, code):
         step_3 = Step_3(browser, link)
         step_3.should_be_step_3()
 
+@pytest.mark.parametrize('link', link,  scope='function')
+@pytest.mark.parametrize('birth_day, days', DateStartPassNegValidate)
+def test__negative_pass_date_start_validate(browser, link, birth_day, days):
+    link = link + 'accident/no_afraid_change/#'
+    step_1 = Step_1(browser, link)
+    step_1.open()
+    step_1.close_popaps()
+    step_1.go_to_next_step()
 
+    step_2 = Step_2(browser, link)
+    step_2.should_be_step_2()
+    step_2.pass_date_start_negative(birth_day, days)
+    time.sleep(2)
+
+@pytest.mark.parametrize('link', link,  scope='function')
+@pytest.mark.parametrize('birth_day, days', DateStartPassPosValidate)
+def test_positive_pass_date_start_validate(browser, link, birth_day, days):
+    link = link + 'accident/no_afraid_change/#'
+    step_1 = Step_1(browser, link)
+    step_1.open()
+    step_1.close_popaps()
+    step_1.go_to_next_step()
+
+    step_2 = Step_2(browser, link)
+    step_2.should_be_step_2()
+    step_2.pass_date_start_positive(birth_day, days)
+    time.sleep(2)
