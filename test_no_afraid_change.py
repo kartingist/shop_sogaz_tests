@@ -1,12 +1,12 @@
 import pytest
-from .pages.no_afraid_change.no_afraid_page_logic import *
+from .pages.no_afraid_change.step_2 import *
 from .pages.step_3_and_pay import *
 import time
 from .link import link
 from .pages.validate_data import *
 
 
-link=link[1]
+link=link[0]
 
 # 1) полный прогон с оплатой
 @pytest.mark.parametrize('link', link,  scope='function')

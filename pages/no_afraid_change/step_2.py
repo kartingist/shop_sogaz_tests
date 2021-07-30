@@ -97,6 +97,9 @@ class Step_2(BasePage):
         self.check_errors(*NoAfraidChangeLocators.date_start_error, 'Обязательное поле')
         self.check_errors(*NoAfraidChangeLocators.division_error, 'Обязательное поле')
         self.check_errors(*NoAfraidChangeLocators.pass_who_give_error, 'Обязательное поле')
+        self.check_errors(*NoAfraidChangeLocators.inp_address_error, 'Обязательное поле')
+        self.check_errors(*NoAfraidChangeLocators.street_error, 'Обязательное поле')
+        self.check_errors(*NoAfraidChangeLocators.home_error, 'Обязательное поле')
 
         # Заполнение первого блока личных данных
         # ____________________________________________________________________________________
