@@ -44,8 +44,6 @@ DateStartPassNegValidate=[
                      ]
 
 DateStartPassPosValidate=[
-                        (14, 0),
-                        (14, 31 ),
                         (20, 0),
                         (20, 31 ),
                         (45, 0),

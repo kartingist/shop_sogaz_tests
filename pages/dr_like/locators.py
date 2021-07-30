@@ -37,7 +37,7 @@ class DrLikeLocators:
     sex_list0 = (By.XPATH, '#select2-sex0-results')
 
     birthday0 = (By.CSS_SELECTOR, '#birthday0')
-    birthday0_error = (By.XPATH, '//*[@id="box-birthday0"]/label')
+    birthday0_error = (By.XPATH, '//*[@id="box-birthday0"]/div')
 
     phone0 = (By.CSS_SELECTOR, '#phone0')
     phone0_error = (By.XPATH, '//*[@id="person0"]/div[2]/div[3]/div')

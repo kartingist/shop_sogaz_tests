@@ -6,9 +6,9 @@ from .link import link
 from .pages.validate_data import *
 
 
-link=link[0]
+link=link[1]
 
-
+# 1) полный прогон с оплатой
 @pytest.mark.parametrize('link', link,  scope='function')
 def test_full_run(browser, link):
 
@@ -28,12 +28,13 @@ def test_full_run(browser, link):
     if 'https://shop.sogaz.ru/' not in link:
         step_3.get_input_code()
         step_3.accept_checkbox()
+        step_3.go_to_pay_click()
         if 'https://sogazrelease.support.zetest.site/' not in link and 'http://shop.sogaz.loc/' not in link:
             pay_step = Pay_step(browser, link)
             pay_step.go_to_pay()
 
 
-
+# 2) позитивные тесты полей ФИО
 @pytest.mark.parametrize('link', link,  scope='function')
 @pytest.mark.parametrize('fio', CyrillicValidate_positive)
 def test_fio_positive(browser, link, fio):
@@ -51,6 +52,7 @@ def test_fio_positive(browser, link, fio):
     step_3 = Step_3(browser, link)
     step_3.should_be_step_3()
 
+# 3) позитивные тесты полей кем выдан и улица
 @pytest.mark.parametrize('link', link,  scope='function')
 @pytest.mark.parametrize('whogiveandstreet', CyrillicAndNumberValidate)
 def test_whogiveandstreet_validate(browser, link, whogiveandstreet):
@@ -68,6 +70,7 @@ def test_whogiveandstreet_validate(browser, link, whogiveandstreet):
     step_3 = Step_3(browser, link)
     step_3.should_be_step_3()
 
+# 4) проверка ошибок обязательных полей
 @pytest.mark.parametrize('link', link,  scope='function')
 def test_null_fields_errors(browser, link ):
 
@@ -84,7 +87,7 @@ def test_null_fields_errors(browser, link ):
     step_3 = Step_3(browser, link)
     step_3.should_be_step_3()
 
-
+# 5) негативные проверки полей ФИО и позитивные для текстовых полей(перенести в другой тест)
 @pytest.mark.parametrize('link', link,  scope='function')
 @pytest.mark.parametrize('testfio, textfields', CyrillicValidate_negative)
 def test_anketa_validation_errors(browser, link, testfio, textfields):
@@ -98,7 +101,7 @@ def test_anketa_validation_errors(browser, link, testfio, textfields):
     step_2.should_be_step_2()
     step_2.anketa_validation_errors(testfio, textfields)
 
-
+# 6) проверка возраста клиента
 @pytest.mark.parametrize('link', link,  scope='function')
 @pytest.mark.parametrize('age, sex', BirthdayValidate)
 def test_age(browser, link, age, sex):
@@ -112,6 +115,7 @@ def test_age(browser, link, age, sex):
     step_2.should_be_step_2()
     step_2.age_check(age, sex)
 #
+# 7) проверка валидации кода сотрудника
 @pytest.mark.parametrize('link', link,  scope='function')
 @pytest.mark.parametrize('code', PersonalCodeValidate)
 def test_validate_personal_code(browser, link, code):
@@ -127,6 +131,7 @@ def test_validate_personal_code(browser, link, code):
         step_3 = Step_3(browser, link)
         step_3.should_be_step_3()
 
+# 8) негативные проверки даты выдачи паспорта
 @pytest.mark.parametrize('link', link,  scope='function')
 @pytest.mark.parametrize('birth_day, days', DateStartPassNegValidate)
 def test__negative_pass_date_start_validate(browser, link, birth_day, days):
@@ -139,8 +144,8 @@ def test__negative_pass_date_start_validate(browser, link, birth_day, days):
     step_2 = Step_2(browser, link)
     step_2.should_be_step_2()
     step_2.pass_date_start_negative(birth_day, days)
-    time.sleep(2)
 
+# 9) позитивные проверки даты выдачи паспорта
 @pytest.mark.parametrize('link', link,  scope='function')
 @pytest.mark.parametrize('birth_day, days', DateStartPassPosValidate)
 def test_positive_pass_date_start_validate(browser, link, birth_day, days):
@@ -153,4 +158,5 @@ def test_positive_pass_date_start_validate(browser, link, birth_day, days):
     step_2 = Step_2(browser, link)
     step_2.should_be_step_2()
     step_2.pass_date_start_positive(birth_day, days)
-    time.sleep(2)
+    step_3 = Step_3(browser, link)
+    step_3.should_be_step_3()

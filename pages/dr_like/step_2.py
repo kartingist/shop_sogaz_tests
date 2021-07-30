@@ -2,8 +2,11 @@ from .locators import *
 from ..base_page import BasePage
 from ..base_locators import Common_Locators
 import time
+from datetime import date
+from dateutil.relativedelta import relativedelta
+import random
 
-
+email=[f'user{str(random.randint(90000, 99999))}@gmail.com']
 
 class Step_2(BasePage):
     def should_be_step_2(self):
@@ -239,8 +242,8 @@ class Step_2(BasePage):
         # Страхователь
         self.check_errors(*DrLikeLocators.surname0_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.firstname0_error, 'Обязательное поле')
-        # self.check_errors(*DrLikeLocators.birthday0_error, 'Обязательное поле')
-        # self.check_errors(*DrLikeLocators.phone0_error, 'Обязательное поле')
+        self.check_errors(*DrLikeLocators.birthday0_error, 'Обязательное поле')
+        self.check_errors(*DrLikeLocators.phone0_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.email_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.pass0_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.date_start0_error, 'Обязательное поле')
@@ -301,7 +304,7 @@ class Step_2(BasePage):
         self.scroll_to_element(*DrLikeLocators.inp_address0)
         self.input_city('Мос', *DrLikeLocators.inp_address0)
         self.selenium_input('test', *DrLikeLocators.street0)
-        self.js_input('692502', *DrLikeLocators.index0)
+        self.js_input('6925', *DrLikeLocators.index0)
         self.selenium_input('testfio', *DrLikeLocators.house0)
         self.selenium_input('testfio', *DrLikeLocators.korpus0)
         self.selenium_input('testfio', *DrLikeLocators.building0)
@@ -354,7 +357,7 @@ class Step_2(BasePage):
         self.scroll_to_element(*DrLikeLocators.inp_address12)
         self.input_city('Мос', *DrLikeLocators.inp_address12)
         self.selenium_input('test', *DrLikeLocators.street12)
-        self.js_input('692502', *DrLikeLocators.index12)
+        self.js_input('6925', *DrLikeLocators.index12)
         self.selenium_input('testfio', *DrLikeLocators.house12)
         self.selenium_input('testfio', *DrLikeLocators.korpus12)
         self.selenium_input('testfio', *DrLikeLocators.building12)
@@ -456,6 +459,92 @@ class Step_2(BasePage):
         self.check_errors(*DrLikeLocators.lastname1_error, 'Допустимы кирилические символы')
 
 
+
+    def pass_date_start_negative(self, birth_day, days):
+        self.js_input((date.today() - relativedelta
+        (years=birth_day+1)).strftime('%d%m%Y'), *DrLikeLocators.birthday0)
+
+        self.js_input((date.today() + relativedelta
+        (years=-1, days=days)).strftime('%d%m%Y'), *DrLikeLocators.date_start0)
+
+        self.js_click(*DrLikeLocators.go_to_step_3)
+        self.should_be(*DrLikeLocators.date_start0_error)
+        if birth_day == 14:
+            self.check_errors(*DrLikeLocators.date_start0_error,
+                'Дата выдачи паспорта некорректна: '
+                'паспорт не может быть выдан ранее 14-ти лет с даты рождения')
+        elif birth_day <= 0 or (birth_day == 20 and  days== 370):
+            self.check_errors(*DrLikeLocators.date_start0_error,
+                'Дата больше текущей')
+
+        else:
+            self.check_errors(*DrLikeLocators.date_start0_error,
+                              'Дата выдачи паспорта некорректна: '
+                              'срок действия указанного паспорта истек')
+
+
+
+    def pass_date_start_positive(self, birth_day, days):
+        self.wait_element(*DrLikeLocators.step_2)
+        # ____________________________________________________________________________________
+        # Страхователь
+        self.selenium_input('Тест', *DrLikeLocators.surname0)
+        self.selenium_input('Тест', *DrLikeLocators.firstname0)
+        self.js_input((date.today() - relativedelta(years=birth_day+1)).strftime('%d%m%Y'), *DrLikeLocators.birthday0)
+        time.sleep(0.6)
+        self.wait_element(*DrLikeLocators.phone0)
+        self.selenium_click(*DrLikeLocators.phone0)
+        self.selenium_input('9990403660', *DrLikeLocators.phone0)
+        self.selenium_input('awjon94@gmail.com', *DrLikeLocators.email)
+        self.js_input('6420001900', *DrLikeLocators.pass0)
+        self.js_input((date.today() + relativedelta(years=-1, days=days)).strftime('%d%m%Y'),
+                      *DrLikeLocators.date_start0)
+        self.selenium_click(*Common_Locators.body)
+        self.js_input('650002', *DrLikeLocators.division0)
+        self.selenium_input('Тест', *DrLikeLocators.pass_who_give0)
+
+        # Адрес регистрации страхователя
+        # ____________________________________________________________________________________
+
+        self.scroll_to_element(*DrLikeLocators.inp_address0)
+        self.input_city('Мос', *DrLikeLocators.inp_address0)
+        self.selenium_input('Тест', *DrLikeLocators.street0)
+        self.selenium_input('33', *DrLikeLocators.house0)
+        self.selenium_input('Уссурийск', *DrLikeLocators.birth_place0)
+
+        # Адрес фактического места жительства страхователя
+        self.selenium_click(*DrLikeLocators.checkbox1)
+
+        # Застрахованный
+
+        self.scroll_to_element(*DrLikeLocators.surname1)
+        self.selenium_input('Тест', *DrLikeLocators.surname1)
+        self.selenium_input('Тест', *DrLikeLocators.firstname1)
+        # self.js_input('03081994', *DrLikeLocators.birthday1)
+        time.sleep(0.6)
+        self.wait_element(*DrLikeLocators.phone1)
+        self.selenium_click(*DrLikeLocators.phone1)
+        self.selenium_input('9990403660', *DrLikeLocators.phone1)
+        self.selenium_input('awjon94@gmail.com', *DrLikeLocators.email1)
+        self.js_input('6420001900', *DrLikeLocators.pass1)
+        self.js_input('04092019', *DrLikeLocators.date_start1)
+        self.selenium_click(*Common_Locators.body)
+        self.js_input('650002', *DrLikeLocators.division1)
+        self.selenium_input('Тест', *DrLikeLocators.pass_who_give1)
+
+        # Адрес регистрации застрахованного
+
+        self.scroll_to_element(*DrLikeLocators.inp_address1)
+        self.input_city('Мос', *DrLikeLocators.inp_address1)
+        self.selenium_input('Тест', *DrLikeLocators.street1)
+        self.selenium_input('33', *DrLikeLocators.house1)
+        self.selenium_input('Уссурийск', *DrLikeLocators.birth_place1)
+
+        # Адрес фактического места жительства застрахованного
+        self.selenium_click(*DrLikeLocators.checkbox2)
+
+        self.scroll_to_element(*DrLikeLocators.go_to_step_3)
+        self.selenium_click(*DrLikeLocators.go_to_step_3)
 # #     ____________________________________________________________________________________________________________
 #
 #     def age_check(self, age, sex):

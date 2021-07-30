@@ -21,6 +21,7 @@ class Step_3(BasePage):
         # Активируем
         for i in range(1, x+1):
             self.driver.execute_script(f"document.getElementById('check{i}').click()")
+    def go_to_pay_click(self):
         self.selenium_click(*Common_Locators.step_to_pay)
 
 class Pay_step(BasePage):
@@ -29,7 +30,7 @@ class Pay_step(BasePage):
         self.selenium_click(*Common_Locators.card_pay)
 
     def go_to_pay(self):
-
+        time.sleep(4)
         self.wait_element(*Common_Locators.pan)
         assert self.is_element_present(*Common_Locators.pan), "Не выполнен переход на эквайринг'"
         self.js_input('4111 1111 1111 1111', *Common_Locators.pan)

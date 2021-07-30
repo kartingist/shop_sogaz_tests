@@ -28,7 +28,7 @@ class Common_Locators:
     codeConfirmNext = (By.CSS_SELECTOR, "#codeConfirmNext")
 
     checkboxes = ((By.XPATH, '//*[@id="step3_inner-confirm"]/div[2]/div/div/div'))
-    step_to_pay = (By.CSS_SELECTOR, '#step_btn_3')
+    step_to_pay = (By.CSS_SELECTOR, '#\#step_btn_3 > a')
 
     # _______________________________________________________________________
     # SBP

@@ -266,26 +266,46 @@ class Step_2(BasePage):
         self.should_be(*NoAfraidChangeLocators.date_start_error)
         if birth_day == 14:
             self.check_errors(*NoAfraidChangeLocators.date_start_error,
-                'Дата выдачи паспорта некорректна:'
-                ' паспорт не может быть выдан ранее 14-ти лет с даты рождения')
-        elif birth_day == 0 or (birth_day == 20 and  days== 370):
+                'Дата выдачи паспорта некорректна: '
+                'паспорт не может быть выдан ранее 14-ти лет с даты рождения')
+        elif birth_day <= 0 or (birth_day == 20 and  days== 370):
             self.check_errors(*NoAfraidChangeLocators.date_start_error,
                 'Дата больше текущей')
 
         else:
             self.check_errors(*NoAfraidChangeLocators.date_start_error,
-                              'Дата выдачи паспорта некорректна:'
-                              ' срок действия указанного паспорта истек')
+                              'Дата выдачи паспорта некорректна: '
+                              'срок действия указанного паспорта истек')
 
 
 
     def pass_date_start_positive(self, birth_day, days):
+        self.wait_element(*NoAfraidChangeLocators.step_2)
+        # Заполнение первого блока личных данных
+        # ____________________________________________________________________________________
+        self.selenium_input("Тест", *NoAfraidChangeLocators.surname)
+        self.selenium_input("Тест", *NoAfraidChangeLocators.firstname)
+        self.selenium_input("Тест", *NoAfraidChangeLocators.lastname)
         self.js_input((date.today() - relativedelta(years=birth_day+1)).strftime('%d%m%Y'), *NoAfraidChangeLocators.birthday)
-        self.js_input((date.today() + relativedelta(years=-1, days=days)).strftime('%d%m%Y'), *NoAfraidChangeLocators.date_start)
+        time.sleep(0.6)
+        self.wait_element(*NoAfraidChangeLocators.phone)
+        self.selenium_click(*NoAfraidChangeLocators.phone)
+        self.selenium_input('9990403660', *NoAfraidChangeLocators.phone)
+        self.selenium_input(email, *NoAfraidChangeLocators.email)
+        self.js_input('6420001900', *NoAfraidChangeLocators.passport)
+        self.js_input((date.today() + relativedelta(years=-1, days=days)).strftime('%d%m%Y'),
+                      *NoAfraidChangeLocators.date_start)
+        self.selenium_click(*Common_Locators.body)
+        self.js_input('650002', *NoAfraidChangeLocators.division)
+        self.selenium_input("Тест", *NoAfraidChangeLocators.pass_who_give)
 
-        self.js_click(*NoAfraidChangeLocators.go_to_step_3)
-'''
-дата выдачи 01 01 2021
-возраст 12
-'''
+        # Заполнение блока адреса регистрации
+        # ____________________________________________________________________________________
+        self.scroll_to_element(*NoAfraidChangeLocators.person1)
+        self.input_city('Мос', *NoAfraidChangeLocators.inp_address)
+        self.selenium_input("Тест", *NoAfraidChangeLocators.street)
+        self.selenium_input('33', *NoAfraidChangeLocators.home)
+        self.scroll_to_element(*NoAfraidChangeLocators.go_to_step_3)
+        self.selenium_click(*NoAfraidChangeLocators.go_to_step_3)
+
 
