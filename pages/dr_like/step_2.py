@@ -243,19 +243,18 @@ class Step_2(BasePage):
         self.check_errors(*DrLikeLocators.surname0_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.firstname0_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.birthday0_error, 'Обязательное поле')
-        self.check_errors(*DrLikeLocators.phone0_error, 'Обязательное поле')
+        # self.check_errors(*DrLikeLocators.phone0_error, 'Ошибка заполнения') #общая ошибка связанная с количеством персон больше одной
         self.check_errors(*DrLikeLocators.email_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.pass0_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.date_start0_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.division0_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.pass_who_give0_error, 'Обязательное поле')
 
-        # self.check_errors(*DrLikeLocators.inp_address0_error, 'Обязательное поле')
+        self.check_errors(*DrLikeLocators.inp_address0_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.street0_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.house0_error, 'Обязательное поле')
-        # self.check_errors(*DrLikeLocators.birth_place0_error, 'Обязательное поле')
 
-        # self.check_errors(*DrLikeLocators.inp_address02_error, 'Обязательное поле')
+        self.check_errors(*DrLikeLocators.inp_address02_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.street02_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.house02_error, 'Обязательное поле')
         # _________________________________________________________________________
@@ -269,12 +268,11 @@ class Step_2(BasePage):
         self.check_errors(*DrLikeLocators.division1_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.pass_who_give0_error, 'Обязательное поле')
 
-        # self.check_errors(*DrLikeLocators.inp_address1_error, 'Обязательное поле')
+        self.check_errors(*DrLikeLocators.inp_address1_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.street1_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.house1_error, 'Обязательное поле')
-        # self.check_errors(*DrLikeLocators.birth_place1_error, 'Обязательное поле')
 
-        # self.check_errors(*DrLikeLocators.inp_address12_error, 'Обязательное поле')
+        self.check_errors(*DrLikeLocators.inp_address12_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.street12_error, 'Обязательное поле')
         self.check_errors(*DrLikeLocators.house12_error, 'Обязательное поле')
 

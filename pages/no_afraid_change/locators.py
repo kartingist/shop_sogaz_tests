@@ -73,7 +73,7 @@ class NoAfraidChangeLocators:
     male = (By.XPATH, "//LI[@role='option'][text()='М']")
     famale = (By.XPATH, "//LI[@role='option'][text()='Ж']")
     birthday = (By.CSS_SELECTOR, "#birthday")
-    birthday_error = (By.XPATH, '// *[ @ id = "box-birthday0"] / div')
+    birthday_error = (By.XPATH, '//*[@id="box-birthday0"]/div')
     phone = (By.CSS_SELECTOR, "#phone")
     phone_error = (By.XPATH, '//*[@id="person1"]/div[2]/div[3]/div')
     email = (By.CSS_SELECTOR, "#email")

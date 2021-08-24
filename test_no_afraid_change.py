@@ -6,7 +6,7 @@ from .link import link
 from .pages.validate_data import *
 
 
-link=link[0]
+link=link[3]
 
 # 1) полный прогон с оплатой
 @pytest.mark.parametrize('link', link,  scope='function')
